@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="As skills instaladas no second brain do Renan: o que cada uma faz, quando entra em cena e como acioná-la.">
+<title>Catálogo de Skills do Renan</title>
+<style>
+:root{
+  --bg:#f6f5f2; --bg2:#fffefb; --ink:#1b1a17; --ink2:#57534a; --ink3:#8b857a;
+  --line:#e2ded4; --line2:#cfc9bb; --accent:#0f6b5c; --accent-soft:#e3f1ee;
+  --warn:#a4571a; --warn-soft:#fbeee0; --shadow:0 1px 2px rgba(27,26,23,.05),0 8px 24px rgba(27,26,23,.05);
+  --mono:ui-monospace,"Cascadia Code","Consolas",monospace;
+  --sans:-apple-system,"Segoe UI",Inter,system-ui,sans-serif;
+}
+/* claro = :root da fonte · escuro por sistema (documento sem estampa) */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#141513;--bg2:#1d1f1c;--ink:#eceae4;--ink2:#a9a59b;--ink3:#7d7970;
+  --line:#2c2e2a;--line2:#3d403a;--accent:#4fc7ae;--accent-soft:#16302b;
+  --warn:#e0a666;--warn-soft:#2e2317;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);}
+}
+/* escuro escolhido a mao vence um sistema claro */
+:root[data-theme="dark"]{--bg:#141513;--bg2:#1d1f1c;--ink:#eceae4;--ink2:#a9a59b;--ink3:#7d7970;
+  --line:#2c2e2a;--line2:#3d403a;--accent:#4fc7ae;--accent-soft:#16302b;
+  --warn:#e0a666;--warn-soft:#2e2317;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.wrap{max-width:1380px;margin:0 auto;padding:0 clamp(16px,3vw,40px)}
+header.top{border-bottom:1px solid var(--line);background:var(--bg2)}
+header.top .wrap{padding-top:36px;padding-bottom:28px}
+.kicker{font:600 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{margin:0 0 10px;font-size:clamp(28px,4.4vw,44px);line-height:1.1;letter-spacing:-.02em;font-weight:700}
+.sub{margin:0;color:var(--ink2);max-width:70ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.stat{border:1px solid var(--line);border-radius:999px;padding:5px 13px;font:500 13px/1.4 var(--sans);color:var(--ink2);background:var(--bg)}
+.stat b{color:var(--ink);font-weight:650}
+
+.layout{display:grid;grid-template-columns:288px minmax(0,1fr);gap:44px;align-items:start;padding:34px 0 90px}
+@media (max-width:960px){.layout{grid-template-columns:1fr;gap:24px}}
+
+nav.toc{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto;
+  border:1px solid var(--line);border-radius:14px;background:var(--bg2);padding:18px;box-shadow:var(--shadow)}
+@media (max-width:960px){nav.toc{position:static;max-height:none}}
+nav.toc h2{margin:0 0 12px;font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+#busca{width:100%;padding:9px 12px;border:1px solid var(--line2);border-radius:9px;background:var(--bg);
+  color:var(--ink);font:15px var(--sans);margin-bottom:16px}
+#busca:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.toc-g{margin-bottom:14px}
+.toc-g > a{display:flex;justify-content:space-between;gap:8px;font-weight:650;font-size:14.5px;color:var(--ink);padding:5px 0}
+.toc-g > a .n{color:var(--ink3);font:500 12px var(--mono)}
+.toc-g ul{list-style:none;margin:2px 0 0;padding:0 0 0 2px;border-left:1px solid var(--line)}
+.toc-g li a{display:block;padding:3px 0 3px 12px;font-size:13.5px;color:var(--ink2);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.toc-g li a:hover{color:var(--accent);text-decoration:none}
+
+section.grupo{margin-bottom:44px;scroll-margin-top:20px}
+section.grupo > .gh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding-bottom:10px;margin-bottom:18px;border-bottom:2px solid var(--ink)}
+section.grupo > .gh h2{margin:0;font-size:22px;letter-spacing:-.01em}
+section.grupo > .gh .gnote{color:var(--ink2);font-size:14px;flex:1 1 260px;margin:0}
+
+.card{border:1px solid var(--line);border-radius:14px;background:var(--bg2);padding:20px 22px;
+  margin-bottom:14px;box-shadow:var(--shadow);scroll-margin-top:20px}
+.card > .ch{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.card h3{margin:0;font:650 18px/1.3 var(--mono);letter-spacing:-.01em}
+.tag{font:600 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;
+  padding:4px 8px;border-radius:6px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.tag.auto{background:var(--warn-soft);color:var(--warn)}
+.tag.ghost{background:transparent;border:1px solid var(--line2);color:var(--ink3)}
+dl{margin:12px 0 0;display:grid;grid-template-columns:120px minmax(0,1fr);gap:7px 16px}
+@media (max-width:620px){dl{grid-template-columns:1fr;gap:2px 0}dl dd{margin-bottom:9px}}
+dt{font:600 11.5px/1.7 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+dd{margin:0;color:var(--ink2)}
+dd.ink{color:var(--ink)}
+code{font:13.5px var(--mono);background:var(--bg);border:1px solid var(--line);
+  border-radius:5px;padding:1px 5px;color:var(--ink)}
+.alerta{margin-top:12px;padding:10px 13px;border-left:3px solid var(--warn);
+  background:var(--warn-soft);border-radius:0 8px 8px 0;font-size:14.5px;color:var(--ink)}
+
+.vazio{display:none;padding:40px;text-align:center;color:var(--ink3);border:1px dashed var(--line2);border-radius:14px}
+.hide{display:none !important}
+footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--ink3);font-size:13.5px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="kicker">Second Brain &middot; Conhecimento</div>
+    <h1>Catálogo de Skills</h1>
+    <p class="sub">Tudo que está instalado e disponível para o Claude neste computador — o que cada skill
+    faz, quando ela deve entrar em cena e como acioná-la à força. As de <b>acionamento automático</b>
+    o Claude carrega sozinho ao reconhecer o assunto; as de <b>comando</b> só rodam se você digitar.</p>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <nav class="toc">
+    <h2>Sumário</h2>
+    <input id="busca" type="search" placeholder="Filtrar skill ou assunto…" autocomplete="off">
+    <div id="toc"></div>
+  </nav>
+  <main>
+    <div id="conteudo"></div>
+    <div class="vazio" id="vazio">Nenhuma skill corresponde ao filtro.</div>
+    <footer>
+      <b>Como manter isto vivo:</b> a regra está no <code>CLAUDE.md</code> da raiz do brain —
+      toda skill nova (ou removida) entra neste arquivo na mesma conversa em que for criada.
+      Se o Claude perceber que uma skill deveria estar ativa e não está, ele avisa antes de responder.
+      <br><br><b>Vigia automático:</b> no início de cada sessão nesta pasta, o hook
+      <code>.claude/hooks/vigia_skills.py</code> compara as pastas de skills e comandos — do projeto,
+      globais e do Claude Desktop — com os nomes catalogados aqui, e cobra o acerto se achar diferença.
+      Ele só avisa; quem escreve a entrada é o Claude.
+      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>25/08/2026</b>
+    </footer>
+  </main>
+</div>
+
+<script>
+/* ==========================================================================
+   DADOS — para acrescentar uma skill nova, basta adicionar um objeto ao grupo
+   correspondente. Campos: n=nome, inv=como acionar, tipo=auto|cmd|ghost,
+   para, quando, onde (opcional), alerta (opcional).
+   ========================================================================== */
+const GRUPOS = [
+{
+  id:"vidrama", t:"Vidrama — feitas sob medida",
+  note:"O núcleo do brain. São essas que carregam as regras que, se erradas, geram prejuízo real.",
+  skills:[
+  { n:"vidrama-saldos", inv:"automática", tipo:"auto",
+    para:"Todas as regras de negócio do estoque: saldo e giro por filial, transferência da matriz, compra por filial, meta de estoque, promoção B2B, leitura dos exports crus <code>ESTOQUE</code> do Protheus e o histórico de <b>preço de importação</b> por fornecedor.",
+    quando:"Sempre que aparecer saldo, giro, item parado, reposição, transferência, compra por filial, promoção, itens promocionais, cotação de importação, as filiais da rede ou um fornecedor estrangeiro. Vale mesmo em frase solta: <em>&ldquo;manda vidro pra SP&rdquo;</em>, <em>&ldquo;quanto compro pra matriz&rdquo;</em>, <em>&ldquo;esse item tá parado&rdquo;</em>.",
+    onde:"<code>.claude/skills/vidrama-saldos/</code> — SKILL.md mais as referências <code>formulas</code>, <code>codificacao</code>, <code>estrutura</code>, <code>estilo</code>, <code>infra</code> e <code>importacao-precos</code>.",
+    alerta:"É a skill que separa <b>COMPRA</b> de <b>TRANSFERÊNCIA</b> — dois comandos diferentes, já confundidos uma vez com erro real. Se um cálculo de estoque começar sem ela carregada, pare e exija."
+  },
+  { n:"vidrama-produtos", inv:"automática", tipo:"auto",
+    para:"A enciclopédia técnica do portfólio: o que cada produto <em>é</em> e como funciona — tipos de vidro (temperado, laminado, PVB, acústico, PET, HUD, térmico), leitura de descrição e complementos (SER, JAN, SENS, ANT, MOLD, ACUST), marcas e fabricantes, adesivos e primmers, sensores de chuva, gravação de chassi, lâminas, linha Bosch, ferramentas, polimento e reparo de trincas.",
+    quando:"Dúvida de produto, não de estoque. Interpretar um código ou uma descrição, comparar equivalentes, explicar uma tecnologia a cliente ou vendedor, entender as bolinhas de status e a coluna ORI das cotações.",
+    onde:"<code>.claude/skills/vidrama-produtos/</code> — 12 referências temáticas mais os scripts de extração da enciclopédia.",
+    alerta:"Dupla natural com a <code>vidrama-saldos</code>: uma diz <em>o que é o item</em>, a outra <em>quanto ter dele</em>. Agrupar códigos equivalentes exige as duas."
+  },
+  { n:"instalar-skills", inv:"automática", tipo:"auto",
+    para:"O processo fechado de instalar pacote de skills no brain: clonar e inspecionar antes de copiar, triar o que serve, checar duplicata e colisão de nome, adaptar a skill ao ambiente daqui e <b>atualizar as quatro bases</b> — este catálogo, a memória, o README do projeto e o <code>ONDE PARAMOS</code> — antes do commit.",
+    quando:"Você mandar instalar skill, pacote, plugin ou comando novo — link do GitHub, pasta, zip, marketplace. Também para atualizar um pacote já instalado, remover uma skill, ou quando o vigia do início de sessão acusar diferença entre o que está instalado e este catálogo.",
+    onde:"<code>.claude/skills/instalar-skills/</code> — SKILL.md mais a referência <code>catalogo</code>, que explica a cirurgia neste arquivo.",
+    alerta:"Duas armadilhas que ela existe para evitar: pacote que manda copiar o <code>CLAUDE.md</code> dele para a raiz (sobrescreveria o da Vidrama) e skill que pressupõe ferramenta inexistente aqui — a adaptação local vai marcada com data, para ser reaplicada quando o upstream atualizar." },
+  { n:"lembrete-aprovacao-oc", inv:"automática / agendada", tipo:"auto",
+    para:"Lembrete de fim de expediente: às 18h em dia útil, avisa para aprovar as ordens de compra antes de fechar o dia.",
+    quando:"Roda por agendamento. Você só invoca à mão para testar o lembrete ou reaproveitar o texto.",
+    onde:"<code>.claude/skills/lembrete-aprovacao-oc/SKILL.md</code>"
+  }]
+},
+{
+  id:"protheus", t:"Protheus / TOTVS — oficiais da engenharia",
+  note:"Vindas do repositório oficial <code>totvs/engpro-advpl-tlpp-skills</code> (commit 93e2f81, 01/06/2026). Do pacote de 19, instalei as 6 que servem ao nosso uso real: ler o banco e alimentar o portal. As outras 13 são de desenvolvimento de customização e ficam disponíveis para instalar quando houver motivo.",
+  skills:[
+  { n:"data-dictionary-lookup", inv:"automática", tipo:"auto",
+    para:"Consulta o dicionário de dados do Protheus — <code>SX2</code> tabelas, <code>SX3</code> campos, <code>SIX</code> índices, <code>SX6</code> parâmetros <code>MV_*</code>, <code>SX5</code> tabelas genéricas, <code>SX7</code> gatilhos, <code>SX9</code> relacionamentos, <code>SXB</code> consultas padrão. É o fim do &ldquo;qual é mesmo o nome do campo&rdquo;.",
+    quando:"Antes de escrever qualquer consulta nova ao banco: descobrir que campos uma tabela tem, o tipo e o tamanho, qual índice existe, o que um parâmetro faz, o conteúdo de uma tabela genérica.",
+    onde:"<code>.claude/skills/data-dictionary-lookup/</code> — SKILL.md mais <code>sql-queries</code> e <code>column-reference</code>.",
+    alerta:"O upstream pressupõe uma ferramenta <code>execute-sql</code> que <b>não existe aqui</b>. Acrescentei uma seção &ldquo;Adaptação Vidrama&rdquo; no fim do SKILL.md: o SQL roda por um script de consulta próprio e as tabelas levam o sufixo <code>010</code>. Se a skill for atualizada pelo repositório, <b>reaplicar esse bloco</b>."
+  },
+  { n:"query-builder", inv:"automática", tipo:"auto",
+    para:"Monta consulta SQL segura para tabela do Protheus, já com os filtros obrigatórios (<code>D_E_L_E_T_</code>, filial), sugerindo o índice certo pelo padrão <code>SIX</code> e avisando das armadilhas clássicas do ERP.",
+    quando:"Toda vez que uma análise for buscar dado no banco em vez de esperar export manual — saldo, giro, faturamento, pedido, nota, título.",
+    onde:"<code>.claude/skills/query-builder/</code>",
+    alerta:"Também tem seção &ldquo;Adaptação Vidrama&rdquo; no fim: aqui a query roda direto no banco, então vale a versão <b>Embedded SQL</b> e não a Workarea. E ela repete as regras de negócio que a consulta tem de respeitar — os armazéns que contam, os CFOPs de venda e a janela de giro."
+  },
+  { n:"sql-optimization", inv:"automática", tipo:"auto",
+    para:"Afinação de desempenho de SQL: plano de execução, estratégia de índice, paginação, operação em lote.",
+    quando:"Consulta ao banco de produção do ERP demorando demais ou varrendo tabela grande — a base é grande e o login não é dono do servidor." },
+  { n:"sql-code-review", inv:"automática", tipo:"auto",
+    para:"Revisão de SQL por segurança e qualidade: injeção, controle de acesso, antipadrão, legibilidade.",
+    quando:"Antes de deixar uma consulta virar rotina recorrente contra a produção." },
+  { n:"tlpp-rest-endpoint-generator", inv:"automática", tipo:"auto",
+    para:"Gera endpoint REST em TLPP com as anotações <code>@Get</code>, <code>@Post</code>, <code>@Put</code>, <code>@Delete</code> no padrão de API da TOTVS (TTALK): paginação, modelo de erro, cabeçalho padrão e Swagger.",
+    quando:"Quando o portal precisar de dado vivo do Protheus por API em vez de consulta direta ao banco.",
+    alerta:"Publicar endpoint no ERP é mexer no ambiente de produção — passa por decisão sua e pela TI, não sai de uma conversa." },
+  { n:"fwrest-client-generator", inv:"automática", tipo:"auto",
+    para:"Gera código AdvPL/TLPP que <em>consome</em> API externa pela classe <code>FWRest</code> — verbos, cabeçalho, autenticação (Basic, Bearer, OAuth 2.0), tempo limite, tratamento de erro.",
+    quando:"Integração de mão inversa: o Protheus chamando um serviço de fora (transportadora, marketplace, banco, o próprio portal)." }]
+},
+{
+  id:"metodo", t:"Método de trabalho (Superpowers)",
+  note:"Plugin obra/superpowers. Disciplina de processo — não sabem nada de vidro, sabem como não fazer besteira.",
+  skills:[
+  { n:"using-superpowers", inv:"automática", tipo:"auto",
+    para:"Meta-skill: ensina o Claude a procurar e usar as outras skills antes de responder qualquer coisa.",
+    quando:"Início de conversa. É a que garante que as demais sejam lembradas." },
+  { n:"brainstorming", inv:"automática", tipo:"auto",
+    para:"Explora intenção, requisito e desenho <em>antes</em> de construir.",
+    quando:"Antes de criar qualquer coisa nova — feature, planilha, relatório, automação. Se o pedido está vago, ela deveria entrar." },
+  { n:"writing-plans", inv:"automática", tipo:"auto",
+    para:"Transforma requisito em plano escrito, passo a passo, com pontos de conferência.",
+    quando:"Tarefa de vários passos que vale registrar em arquivo — migração, refatoração grande, rotina nova." },
+  { n:"executing-plans", inv:"automática", tipo:"auto",
+    para:"Executa um plano já escrito, com revisão entre etapas.",
+    quando:"Você tem o plano em mãos e quer que ele seja seguido em outra sessão, sem improviso." },
+  { n:"subagent-driven-development", inv:"automática", tipo:"auto",
+    para:"Executa as tarefas independentes de um plano distribuindo-as em subagentes, na mesma sessão.",
+    quando:"O plano tem partes que não dependem uma da outra e você quer velocidade." },
+  { n:"dispatching-parallel-agents", inv:"automática", tipo:"auto",
+    para:"Dispara vários agentes em paralelo para trabalho sem estado compartilhado.",
+    quando:"Duas ou mais buscas e análises independentes — por exemplo varrer cinco planilhas ao mesmo tempo." },
+  { n:"using-git-worktrees", inv:"automática", tipo:"auto",
+    para:"Cria área de trabalho isolada para não sujar o diretório atual.",
+    quando:"Trabalho experimental que talvez seja descartado. Pouco usado aqui — o brain não é repositório git." },
+  { n:"test-driven-development", inv:"automática", tipo:"auto",
+    para:"Escreve o teste antes do código.",
+    quando:"Qualquer script novo com regra de cálculo. Para fórmula de estoque, é o que impede publicar conta errada." },
+  { n:"systematic-debugging", inv:"automática", tipo:"auto",
+    para:"Método de investigação: hipótese, evidência, correção — em vez de chutar remendo.",
+    quando:"Resultado inesperado, número que não fecha, script que quebra. Deveria entrar <em>antes</em> de qualquer proposta de correção." },
+  { n:"verification-before-completion", inv:"automática", tipo:"auto",
+    para:"Proíbe dizer &ldquo;pronto, corrigido, funcionando&rdquo; sem ter rodado a verificação e mostrado a saída.",
+    quando:"No fim de toda tarefa. É a sua principal defesa contra &ldquo;feito&rdquo; que não foi feito." },
+  { n:"requesting-code-review", inv:"automática", tipo:"auto",
+    para:"Pede revisão do próprio trabalho contra os requisitos originais.",
+    quando:"Terminou uma feature ou um script grande, antes de considerar entregue." },
+  { n:"receiving-code-review", inv:"automática", tipo:"auto",
+    para:"Como tratar crítica recebida: verificar tecnicamente em vez de concordar por educação.",
+    quando:"Quando você aponta um erro e a resposta precisa ser análise, não um &ldquo;tem razão, corrigindo&rdquo; automático." },
+  { n:"finishing-a-development-branch", inv:"automática", tipo:"auto",
+    para:"Decide como integrar trabalho concluído — juntar, comprimir ou descartar.",
+    quando:"Fim de uma frente de trabalho versionada em git." },
+  { n:"writing-skills", inv:"automática", tipo:"auto",
+    para:"Como criar, editar e validar skills — estrutura, descrição que dispara na hora certa, teste de acionamento.",
+    quando:"Você pediu &ldquo;transforma isso numa skill&rdquo;. É a que deve rodar junto com a atualização deste catálogo.",
+    alerta:"Toda vez que esta skill for usada para criar algo, este arquivo precisa ganhar a entrada nova na mesma conversa." }]
+},
+{
+  id:"especialistas", t:"Especialistas técnicos",
+  note:"Conhecimento profundo de um domínio de programação. Entram quando o assunto realmente é aquele.",
+  skills:[
+  { n:"prompt-engineer", inv:"automática", tipo:"auto",
+    para:"Escreve, refatora e avalia prompts para modelos de linguagem: templates, schema de saída estruturada, rubrica de avaliação, suíte de teste.",
+    quando:"Ao montar ou ajustar os prompts das rotinas na nuvem, ou quando um prompt vem trazendo resultado inconsistente." },
+  { n:"react-expert", inv:"automática", tipo:"auto",
+    para:"React 18 e 19 e Next.js — componentes, hooks, Server Components, performance.",
+    quando:"Só se for mexer em interface web de verdade. Desde 25/08/2026 <b>Node 24 LTS e npm estão instalados</b> e no PATH, então <code>npx create-next-app</code> e afins rodam de verdade." },
+  { n:"typescript-pro", inv:"automática", tipo:"auto",
+    para:"Tipagem avançada em TypeScript: genéricos, tipos condicionais, tipos mapeados, tRPC.",
+    quando:"Mesmo caso do React — projeto web, não planilha." },
+  { n:"secure-code-guardian", inv:"automática", tipo:"auto",
+    para:"Autenticação, autorização, validação de entrada, criptografia, prevenção do OWASP Top 10.",
+    quando:"Qualquer coisa que toque em senha, token, credencial ou dado de cliente." }]
+},
+{
+  id:"visual", t:"Design e visual",
+  note:"Para quando a entrega é para ser vista — por você, pela equipe ou pelo cliente.",
+  skills:[
+  { n:"canvas-design", inv:"automática", tipo:"auto",
+    para:"Arte visual em .png e .pdf com critério de design: cartaz, peça gráfica, arte estática.",
+    quando:"Material de divulgação — encarte de promoção, cartaz interno, arte de campanha." },
+  { n:"frontend-design", inv:"automática", tipo:"auto",
+    para:"Direção estética de interface: tipografia, hierarquia, escolhas que não parecem template pronto.",
+    quando:"Ao construir ou reformular qualquer tela ou página HTML — inclusive relatórios como este catálogo." },
+  { n:"diagram-maker", inv:"automática", tipo:"auto",
+    para:"Transforma explicação em <b>desenho</b>: fluxo, organograma, arquitetura de sistema, mapa de processo ou de conceito. Sai em <code>.html</code> autocontido (SVG embutido, abre no navegador sem internet) ou em <code>.excalidraw</code>, que é editável à mão depois.",
+    quando:"Quando a resposta seria mais clara desenhada do que escrita — o caminho de uma transferência entre filiais, o fluxo de uma OC até a aprovação, o desenho de um processo para treinar a equipe.",
+    onde:"<code>.claude/skills/diagram-maker/</code> — SKILL.md mais as referências <code>svg-template</code> e <code>excalidraw-patterns</code>. De <code>openclaw/openclaw</code> (MIT), instalada em 19/08/2026.",
+    alerta:"Pisa no mesmo terreno da nativa <code>artifact-diagramming</code>. A diferença prática: esta gera <b>arquivo local</b> (bom para mandar por e-mail ou guardar em pasta); a nativa desenha <b>dentro de um artifact</b> publicado. Peça arquivo ou artifact para não ficar no criterio dele." }]
+},
+{
+  id:"caveman", t:"Modo caveman — economia de token",
+  note:"Cortam o tamanho da resposta sem perder precisão técnica. Úteis em sessão longa que está consumindo muito contexto.",
+  skills:[
+  { n:"caveman", inv:"/caveman", tipo:"cmd",
+    para:"Modo de comunicação ultracomprimido: corta cerca de 65% dos tokens de saída falando em estilo telegráfico. Níveis lite, full, ultra e as variantes wenyan.",
+    quando:"Sessão longa, muita ida e volta, ou quando você pedir &ldquo;seja breve&rdquo; ou &ldquo;menos tokens&rdquo;." },
+  { n:"caveman-commit", inv:"/caveman-commit", tipo:"cmd",
+    para:"Mensagem de commit enxuta em Conventional Commits — assunto até 50 caracteres, corpo só quando o motivo não é óbvio.",
+    quando:"Ao versionar mudanças em git." },
+  { n:"caveman-review", inv:"/caveman-review", tipo:"cmd",
+    para:"Comentário de revisão de código em uma linha: local, problema, correção.",
+    quando:"Revisão de pull request em que você quer o sinal, não o texto." },
+  { n:"caveman-help", inv:"/caveman-help", tipo:"cmd",
+    para:"Cartão de referência de todos os modos caveman.",
+    quando:"Esqueceu quais níveis existem." }]
+},
+{
+  id:"pesquisa", t:"Pesquisa e mercado",
+  skills:[
+  { n:"last30days", inv:"/last30days &lt;tema&gt;", tipo:"cmd",
+    para:"Levanta o que as pessoas estão realmente dizendo sobre um tema nos últimos 30 dias: Reddit, X, YouTube, TikTok, Hacker News, GitHub, Polymarket e web aberta, com o engajamento de cada post.",
+    quando:"Sentir o mercado antes de decidir — reação a um lançamento, o que o setor comenta, o que reclamam de um fornecedor ou de uma tecnologia.",
+    onde:"<code>.claude/skills/last30days/</code> — plugin mvanhorn/last30days-skill.",
+    alerta:"Algumas fontes pedem chave de API própria. Rode <code>/last30days doctor</code> para ver o que está funcionando antes de confiar no resultado." },
+  { n:"market-research", inv:"automática", tipo:"auto",
+    para:"Disciplina de pesquisa que termina em <b>decisão</b>, não em resumo: análise de concorrente, dimensionamento de mercado (TAM/SAM/SOM por cima e por baixo), avaliação de fornecedor ou tecnologia e dossiê de investidor. Exige fonte para cada afirmação, marca dado velho, obriga a trazer a evidência contrária e separa fato de inferência e de recomendação.",
+    quando:"Antes de entrar numa linha nova, trocar ou avaliar fornecedor, comparar a Vidrama com concorrente, estimar tamanho de um mercado, ou testar uma tese antes de investir nela.",
+    onde:"<code>.claude/skills/market-research/</code> — só o SKILL.md, de <code>affaan-m/ECC</code> (MIT), instalada em 19/08/2026.",
+    alerta:"É <b>método, não fonte</b> — não busca nada sozinha. Combine com <code>/last30days</code> ou busca na web, senão ela estrutura muito bem um relatório sem dado nenhum atrás. O SKILL.md está em inglês; a resposta continua em português." }]
+},
+{
+  id:"decisao", t:"Decisão de negócio e auditoria do portal (pm-skills)",
+  note:"Recorte do marketplace <code>phuryn/pm-skills</code> v2.1.0 (commit <code>18468a9</code>, 03/07/2026), instalado em 25/08/2026. O pacote traz <b>68 skills e 42 comandos</b> de gestão de produto de software; <b>13 skills e 11 comandos</b> (8 na manhã de 25/08, mais 5 à tarde para o painel de reposição) foram instalados. As sete primeiras entraram em 25/08/2026 pelo que tocam preço, medição, decisão e o portal. A <code>create-prd</code> entrou no mesmo dia, mais tarde, por um motivo diferente: <b>o Renan decidiu desenvolver produtos próprios</b> — o que derrubou a premissa da triagem original, de que PM de software era ofício que ele não exercia. O resto (sprint, OKR, persona, canvas de startup, currículo, NDA) segue <b>disponível mas não instalado</b>, porque cada descrição custa contexto em toda conversa — não porque não sirva. <b>Todas as oito levam bloco de adaptação Vidrama datado</b> no fim do SKILL.md — reaplicar se o upstream atualizar.",
+  skills:[
+  { n:"create-prd", inv:"automática · <code>/pm:write-prd</code>", tipo:"auto",
+    para:"Documento de requisitos em 8 seções — resumo, contexto, objetivo e métrica de sucesso, segmento, proposta de valor, solução, premissas e plano de versão. É <b>a intenção escrita</b> de um produto, antes de existir código.",
+    quando:"Começar um produto próprio, especificar uma funcionalidade, ou revisar um PRD que já existe. <em>&ldquo;quero construir tal coisa, por onde começo&rdquo;</em>.",
+    onde:"<code>.claude/skills/create-prd/</code> · comando <code>.claude/commands/pm/write-prd.md</code>. O documento nasce em <code>Produtos/&lt;nome&gt;/PRD-&lt;nome&gt;.md</code>, nunca na raiz e nunca em <code>Projetos/</code>, que é da Vidrama.",
+    alerta:"Instalada em 25/08/2026, quando o Renan decidiu desenvolver produtos próprios. A adaptação corta a cerimônia de time grande (contatos, alinhamento de stakeholder — ele é o time inteiro) e dá peso a <b>não-objetivos e premissas</b>, que é o único freio de escopo que existe quando não há chefe. Fecha ciclo com a <code>intended-vs-implemented</code>: a auditoria só vale contra intenção escrita antes." },
+  { n:"pricing-strategy", inv:"automática · <code>/pm:pricing</code>", tipo:"auto",
+    para:"Método de preço: elasticidade, disposição a pagar, preço do concorrente e desenho do experimento de preço. É a ferramenta da <b>terceira alavanca</b> do projeto de estoque — girar pelo preço, não só pela compra.",
+    quando:"Avaliar um corte ou aumento de preço, medir se o preço subiu mais do que o mercado aceita, montar um piloto de preço, ou olhar a matriz de giro contra margem por subgrupo.",
+    onde:"<code>.claude/skills/pricing-strategy/</code> · comando <code>.claude/commands/pm/pricing.md</code>.",
+    alerta:"O upstream é de software (freemium, por assento, por uso) — <b>nada disso se aplica</b>. A adaptação local manda usar a matriz de giro contra margem do projeto de preço e cortar por subgrupo, não pelo catálogo inteiro." },
+  { n:"ab-test-analysis", inv:"automática · <code>/pm:analyze-test</code>", tipo:"auto",
+    para:"Lê resultado de teste com rigor: tamanho de amostra, significância, intervalo de confiança, e a recomendação de <em>manter, estender ou parar</em>. Serve para dizer se o corte de preço funcionou de verdade ou se foi ruído.",
+    quando:"Depois de rodar um piloto de preço, promoção ou mudança de política numa filial — <em>&ldquo;vendeu mais, valeu a pena?&rdquo;</em>.",
+    onde:"<code>.claude/skills/ab-test-analysis/</code> · comando <code>.claude/commands/pm/analyze-test.md</code>.",
+    alerta:"<b>Sazonalidade antes de significância.</b> Alta em Out–Mar, baixa em Abr–Set: teste que entrou na alta ganha sozinho. A adaptação obriga comparação <b>ano contra ano</b>, split por filial ou SKU pareado (não por usuário), e leitura em <b>peça e receita</b>, não em conversão." },
+  { n:"cohort-analysis", inv:"automática · <code>/pm:analyze-cohorts</code>", tipo:"auto",
+    para:"Curva de retenção por coorte — aqui, <b>cliente que volta a comprar</b>, agrupado pelo mês da primeira compra. Cruza com canal de venda e filial.",
+    quando:"Perguntar quantos clientes de um período ainda compram, se um canal retém melhor que outro, ou onde a carteira está vazando.",
+    onde:"<code>.claude/skills/cohort-analysis/</code> · comando <code>.claude/commands/pm/analyze-cohorts.md</code>.",
+    alerta:"O corte por mídia só vale <b>de jan/2022 em diante</b> (nos primeiros anos, boa parte das notas saiu sem mídia registrada). E a curva carrega a sazonalidade: queda no sexto mês de uma coorte de outubro pode ser só abril." },
+  { n:"strategy-red-team", inv:"automática · <code>/pm:red-team-prd</code>", tipo:"auto",
+    para:"Adversário honesto de um plano: acha a premissa que sustenta a decisão, ataca, ordena as formas de falhar por impacto × probabilidade × custo de testar, e devolve <b>o teste mais barato e o critério de desistir</b> para cada uma.",
+    quando:"Antes de comprometer dinheiro — recompra grande, corte de preço, mudança de meta de estoque, o Second Brain corporativo. <em>&ldquo;me diz por que isso pode dar errado&rdquo;</em>.",
+    onde:"<code>.claude/skills/strategy-red-team/</code> · comando <code>.claude/commands/pm/red-team-prd.md</code>.",
+    alerta:"A adaptação já carrega as quatro premissas que aqui falham sempre — trimestre contra trimestre, comprar sem olhar a matriz, excesso que fica preso na filial, e margem boa escondendo preço acima do mercado. O caso real deste projeto: comprar mais <b>nem sempre melhorou o resultado</b>." },
+  { n:"metrics-dashboard", inv:"automática · <code>/pm:setup-metrics</code>", tipo:"auto",
+    para:"Desenha painel: qual indicador, de onde vem o dado, como se mostra e em que limiar alerta.",
+    quando:"Definir o que o portal interno deve mostrar, criar um indicador novo ou revisar um limiar que dispara demais.",
+    onde:"<code>.claude/skills/metrics-dashboard/</code> · comando <code>.claude/commands/pm/setup-metrics.md</code>.",
+    alerta:"O destino é o <b>portal</b>, não planilha — indicador novo não nasce em Excel. E todo indicador de estoque nasce com recorte de filial: média da rede esconde o problema, e filial nunca se soma com outra." },
+  { n:"shipping-artifacts", inv:"automática", tipo:"auto",
+    para:"O conjunto mínimo de documentos que torna um app feito com IA <b>revisável</b> antes de subir: arquitetura, fluxos de usuário e permissão, variáveis e segredos, mapa de cobertura de teste.",
+    quando:"Documentar o portal para alguém revisar, mapear quem enxerga o quê, ou preparar terreno para auditoria de segurança.",
+    onde:"<code>.claude/skills/shipping-artifacts/</code> · comandos <code>/pm:document-app</code> e <code>/pm:ship-check</code>.",
+    alerta:"<b>O alvo é o repositório do portal, que mora fora desta pasta</b> — nunca rodar apontando para o Second Brain, aqui não há aplicação. E o <code>CLAUDE.md</code> da raiz é contexto da Vidrama: não se sobrescreve." },
+  { n:"intended-vs-implemented", inv:"automática", tipo:"auto",
+    para:"Caça a diferença entre <em>o que o sistema deveria fazer</em> e <em>o que o código faz</em> — a classe de erro que analisador automático não pega, porque ele não sabe qual era a intenção.",
+    quando:"Auditar o portal: permissão documentada que o código não impõe, e também <b>regra de negócio</b> implementada errada — janela de giro fixa, filial somada com outra, categoria entrando numa conta de que não participa.",
+    onde:"<code>.claude/skills/intended-vs-implemented/</code> · comando <code>/pm:security-audit-static</code>.",
+    alerta:"Depende de a intenção estar escrita: sem a <code>shipping-artifacts</code> antes, não tem contra o quê comparar. Aqui a intenção inclui o <code>CLAUDE.md</code> e a <code>vidrama-saldos</code>, não só a documentação do código." },
+  { n:"/pm:ship-check", inv:"<code>/pm:ship-check</code>", tipo:"cmd",
+    para:"Encadeia a sequência inteira — documenta o app, roda auditoria de segurança e de performance em paralelo, monta o mapa de cobertura de teste e compila tudo num pacote que um humano assembla e aprova.",
+    quando:"Antes de expor uma versão nova do portal para os setores.",
+    onde:"<code>.claude/commands/pm/</code> — junto com <code>document-app</code>, <code>security-audit-static</code>, <code>performance-audit-static</code> e <code>derive-tests</code>.",
+    alerta:"<b>Único comando destrutivo do pacote:</b> o passo 2 do upstream <b>cria ou refaz o <code>CLAUDE.md</code> da raiz</b>. Foi travado localmente — ele para se for chamado dentro do Second Brain e exige caminho explícito. Se o comando for atualizado pelo upstream, <b>a trava precisa ser reaplicada</b>." },
+  { n:"pre-mortem", inv:"automática", tipo:"auto",
+    para:"Risco antes do lançamento, separado em três categorias: <b>Tigres</b> (problema real), <b>Tigres de papel</b> (medo exagerado) e <b>Elefantes</b> (a preocupação que ninguém verbaliza). Cada um sai classificado como bloqueia o lançamento, corrige depois, ou só acompanha.",
+    quando:"Antes de começar a construir o painel de reposição, e antes de ligar qualquer automação de compra.",
+    onde:"<code>.claude/skills/pre-mortem/</code>.",
+    alerta:"Complementa a <code>strategy-red-team</code>, não repete: a red-team ataca <b>a premissa</b> de uma estratégia; a pre-mortem imagina <b>o fracasso já consumado</b> de um plano de execução e volta no tempo. O <em>elefante</em> deste projeto já tem nome: comprar mais nem sempre melhorou o resultado." },
+  { n:"prioritization-frameworks", inv:"automática", tipo:"auto",
+    para:"Nove métodos de priorizar, com fórmula e quando cada um serve — RICE, ICE, Kano, MoSCoW, Opportunity Score e outros.",
+    quando:"Ordenar as sprints do painel, decidir qual alavanca vem primeiro, ou escolher entre corrigir e construir.",
+    onde:"<code>.claude/skills/prioritization-frameworks/</code>.",
+    alerta:"É referência, não processo: ela ensina o método, quem pontua é você. Cuidado com RICE aqui — <em>alcance</em> num sistema de um usuário só não discrimina nada; o eixo que separa é <b>quanto trabalho manual a entrega elimina</b>." },
+  { n:"sprint-plan", inv:"automática", tipo:"auto",
+    para:"Planeja a sprint: capacidade, seleção de histórias, mapa de dependência e risco.",
+    quando:"No começo de cada semana do painel de reposição.",
+    onde:"<code>.claude/skills/sprint-plan/</code>.",
+    alerta:"Pressupõe time e velocidade histórica — aqui <b>o time é você mais eu</b>. Ler capacidade como horas suas disponíveis na semana, nunca como pontos de equipe." },
+  { n:"north-star-metric", inv:"automática", tipo:"auto",
+    para:"Define a métrica-guia e de 3 a 5 indicadores de entrada que a sustentam, validados contra 7 critérios.",
+    quando:"Fechar o que o painel de reposição mede como sucesso, antes de construir a primeira tela.",
+    onde:"<code>.claude/skills/north-star-metric/</code>.",
+    alerta:"<b>A armadilha deste projeto está exatamente aqui.</b> “reduzir estoque” como métrica-guia é satisfeita zerando a compra — e destrói a venda. A métrica tem de carregar a fronteira: <em>cobertura menor sem aumento de ruptura</em>. Usar junto com a <code>loop-design-check</code>." },
+  { n:"identify-assumptions-new", inv:"automática", tipo:"auto",
+    para:"Mapeia as premissas arriscadas de uma ideia nova em 8 categorias de risco — incluindo entrada no mercado, estratégia e time.",
+    quando:"Ideia nova ainda sem dado: um produto próprio em <code>Produtos/</code>, ou uma frente nova da Vidrama.",
+    onde:"<code>.claude/skills/identify-assumptions-new/</code>.",
+    alerta:"É para <b>ideia nova</b>. O projeto de estoque já tem 20 meses de dado — ali a ferramenta certa é medir, não supor." }]
+},
+{
+  id:"construcao", t:"Construção e auditoria do painel (ECC + shadcn)",
+  note:"Instaladas em 25/08/2026 para o <b>painel de reposição</b> — o mini-ERP de saldo, transferência, compra e preço que tira o projeto do Excel. Cinco garimpadas do harness <code>affaan-m/ECC</code> (commit <code>d8409a4</code>, 19/08/2026, MIT) e uma do <code>shadcn/improve</code> (commit <code>03369ee</code>, 15/06/2026, MIT). Chegaram pela curadoria do <b>Ali</b> (<code>aliborhothamud/claude-melhores-skills</code>), que é catálogo e não re-host — cada uma foi baixada da fonte original. <b>Cinco levam bloco de adaptação Vidrama datado no fim do SKILL.md; se o upstream for atualizado, reaplicar.</b>",
+  skills:[
+  { n:"loop-design-check", inv:"automática", tipo:"auto",
+    para:"Desenha e revisa <b>loop de agente autônomo</b> contra os cinco modos de falha: girar queimando token, burlar o verificador, levar uma resposta errada até o fim, contar que o agente vai perguntar no meio, e apoiar-se em documentação velha. Mais três linhas vermelhas.",
+    quando:"Desenhar ou revisar qualquer automação que rode sozinha — o painel inteiro, as automações de acompanhamento, um cron novo.",
+    onde:"<code>.claude/skills/loop-design-check/</code>.",
+    alerta:"<b>É a régua do painel de reposição.</b> A adaptação local fixa três coisas: o que sai da empresa é sempre portão humano; “reduzir estoque” sozinho é Goodhart puro (zerar a compra passa no verificador e mata a venda); e <b>gravar no Protheus está fora do escopo</b>, por decisão de 25/08/2026." },
+  { n:"living-docs-governance", inv:"automática", tipo:"auto",
+    para:"Impede a documentação de apodrecer: dá papel canônico a cada documento — constituição, mapa, status, histórico — e faz o resto <b>apontar em vez de copiar</b>, para a mesma verdade não divergir em N lugares.",
+    quando:"Quando a doc contradiz o código, ou quando a mesma regra aparece escrita em dois lugares com valores diferentes.",
+    onde:"<code>.claude/skills/living-docs-governance/</code>.",
+    alerta:"O problema que ela ataca <b>já aconteceu duas vezes no mesmo dia</b>: duas implementações competindo pela mesma regra, e o dataset de lote sobrescrito com o esquema errado. ⚠️ A adaptação local <b>proíbe</b> aplicar aqui o conselho de “encurtar o arquivo do harness”: o <code>CLAUDE.md</code> daqui é denso de propósito." },
+  { n:"improve", inv:"automática", tipo:"auto",
+    para:"Consultor sênior <b>somente leitura</b>: varre a base, acha as oportunidades de maior valor (bug, segurança, performance, cobertura de teste, dívida técnica, direção de produto) e escreve <b>planos autossuficientes para outro agente executar</b>. Nunca edita código.",
+    quando:"“audita esse repositório”, “o que fazer aqui agora”, ou gerar plano de passagem de bastão.",
+    onde:"<code>.claude/skills/improve/</code>.",
+    alerta:"A adaptação local muda <b>onde o plano nasce</b>: nunca <code>plans/</code> na raiz do brain — vai para <code>&lt;pasta do projeto&gt;/plans/</code>. E manda ingerir <code>CLAUDE.md</code>, o README do projeto e a <code>vidrama-saldos</code> como intenção: regra de negócio registrada <b>não é achado</b>, é decisão já tomada." },
+  { n:"click-path-audit", inv:"automática", tipo:"auto",
+    para:"Segue o <b>caminho do clique</b> ponta a ponta: o manipulador existe, chega no servidor, persiste e volta para a tela. Acha o bug em que duas funções individualmente certas <b>se cancelam</b>.",
+    quando:"“aprovei a transferência e sumiu”, “salvou mas não aparece”, ou depois de refatorar estado compartilhado.",
+    onde:"<code>.claude/skills/click-path-audit/</code>.",
+    alerta:"Só serve depois que existir tela — a partir da <b>sprint 2</b>. Antes disso não há caminho de clique para seguir." },
+  { n:"production-audit", inv:"automática", tipo:"auto",
+    para:"Prontidão para produção por lentes — configuração, segredo, migração, permissão, caminho de erro — com <b>evidência local</b>, sem mandar o repositório para serviço externo.",
+    quando:"Véspera de expor o painel a alguém além de você; revisão depois de juntar código.",
+    onde:"<code>.claude/skills/production-audit/</code>.",
+    alerta:"A adaptação local registra que <b>Docker não existe</b> aqui, e que a política de credencial do ERP já está decidida — achado que sugira afrouxá-la para automatizar contraria decisão já tomada. Dado comercial é severidade alta, não média." },
+  { n:"ai-regression-testing", inv:"automática", tipo:"auto",
+    para:"Ataca o ponto cego do código escrito por IA — <b>o mesmo modelo escreve e revisa</b>. Teste de API em modo sandbox, sem depender do banco, e checagem automática de bug.",
+    quando:"Depois de uma leva grande de código gerado; “por que só quebra em produção?”.",
+    onde:"<code>.claude/skills/ai-regression-testing/</code>.",
+    alerta:"Os exemplos do upstream são Supabase e Vitest — <b>não é a nossa stack</b>, que só se decide na sprint 0. Ler os padrões, ignorar as ferramentas. O alvo real é o <b>motor determinístico</b>: cada regra (meta, piso, lote, agrupamento) precisa de teste de regressão próprio, senão mudar uma regra quebra calada uma rodada passada que era reproduzível." }]
+},
+{
+  id:"notion", t:"Notion (plugin oficial da Notion)",
+  note:"Plugin <code>makenotion/claude-code-notion-plugin</code> v0.1.0, instalado em 25/08/2026: quatro skills automáticas mais uma família de comandos. As skills e os comandos foram copiados para <code>.claude/</code> para carregarem junto com o brain; o plugin em si está declarado no <code>settings.json</code> do projeto.",
+  skills:[
+  { n:"notion-knowledge-capture", inv:"automática", tipo:"auto",
+    para:"Transforma a conversa em documentação estruturada no Notion — registro de decisão, FAQ, guia de como fazer, página de wiki — já no lugar certo e com ligação entre as páginas.",
+    quando:"Uma regra de negócio ou uma decisão precisa sair do chat e virar página que outra pessoa lê.",
+    onde:"<code>.claude/skills/notion-knowledge-capture/</code>" },
+  { n:"notion-meeting-intelligence", inv:"automática", tipo:"auto",
+    para:"Prepara reunião: junta o contexto que já existe no Notion, complementa com pesquisa e gera dois documentos — uma leitura prévia interna e uma pauta para os participantes.",
+    quando:"Antes de reunião com fornecedor, banco ou equipe, quando chegar preparado vale mais que improvisar.",
+    onde:"<code>.claude/skills/notion-meeting-intelligence/</code>" },
+  { n:"notion-research-documentation", inv:"automática", tipo:"auto",
+    para:"Busca no workspace inteiro, cruza várias páginas e fecha um relatório novo no Notion, com citação da origem de cada trecho.",
+    quando:"A informação está espalhada em muitas páginas e você quer uma só.",
+    onde:"<code>.claude/skills/notion-research-documentation/</code>" },
+  { n:"notion-spec-to-implementation", inv:"automática", tipo:"auto",
+    para:"Quebra uma especificação do Notion em tarefas concretas com critério de aceite e acompanhamento de progresso.",
+    quando:"Uma página descreve o que precisa ser feito e você quer virar plano executável.",
+    onde:"<code>.claude/skills/notion-spec-to-implementation/</code>" },
+  { n:"comandos /notion", inv:"/notion:search, /notion:find, /notion:create-page, /notion:create-task, /notion:create-database-row, /notion:database-query, /notion:tasks:setup, /notion:tasks:build, /notion:tasks:plan, /notion:tasks:explain-diff", tipo:"cmd",
+    para:"Dez comandos diretos: buscar no workspace, achar página por título, criar página, tarefa ou linha de base, consultar base, montar quadro de tarefas e gerar um documento explicando uma mudança de código.",
+    quando:"Operação pontual no Notion, sem precisar explicar o contexto.",
+    onde:"<code>.claude/commands/notion/</code>",
+    alerta:"<b>Em espera desde 24/08/2026</b>: o workspace conectado ainda é o de exemplo, não existe página da Vidrama — não criar nada lá por conta própria. O plugin traz também um servidor MCP próprio (<code>mcp.notion.com</code>) que exige um login OAuth feito numa sessão interativa; enquanto isso, as skills funcionam com o conector do Notion já ligado no claude.ai." }]
+},
+{
+  id:"voz", t:"Voz (leitura em voz alta, pt-BR)",
+  note:"Comandos globais do pacote voz-para-claude — voz feminina Francisca, via edge-tts. Só rodam se digitados.",
+  skills:[
+  { n:"/voz", inv:"/voz [on|off|status|repetir|parar]", tipo:"cmd",
+    para:"Controle geral da leitura em voz alta. Sem argumento, alterna entre ligado e desligado.",
+    quando:"Quando quiser ouvir a resposta em vez de ler.",
+    onde:"<code>~/.claude/commands/voz.md</code> mais os hooks em <code>~/.claude/hooks/</code>; código-fonte em <code>voz-para-claude/</code>." },
+  { n:"/voz:on", inv:"/voz:on", tipo:"cmd", para:"Liga a leitura em voz alta.", quando:"Início de uma sessão em que você vai ouvir." },
+  { n:"/voz:off", inv:"/voz:off", tipo:"cmd", para:"Desliga a voz e corta a fala em andamento.", quando:"Silêncio definitivo — reunião, ligação." },
+  { n:"/voz:status", inv:"/voz:status", tipo:"cmd", para:"Mostra se a voz está ligada, o áudio em cache e as janelas ativas.", quando:"A voz não saiu e você quer saber por quê." },
+  { n:"/voz:repetir", inv:"/voz:repetir", tipo:"cmd", para:"Repete o último áudio direto do cache, sem sintetizar de novo.", quando:"Não entendeu a última frase." },
+  { n:"/voz:parar", inv:"/voz:parar", tipo:"cmd", para:"Corta agora a fala em andamento, sem desligar o modo voz.", quando:"Resposta longa demais para ouvir inteira." },
+  { n:"/silenciar", inv:"/silenciar", tipo:"cmd", para:"Atalho de emergência: interrompe imediatamente a leitura que está tocando.", quando:"Alguém entrou na sala." }]
+},
+{
+  id:"nativas", t:"Nativas do Claude Code",
+  note:"Vêm com a ferramenta, não foram instaladas por você. Estão aqui para você saber que existem.",
+  skills:[
+  { n:"design", inv:"/design", tipo:"cmd",
+    para:"Cria um canvas de design com vários quadros num só artefato publicado, editável no visual.",
+    quando:"Protótipo de tela, fluxo, landing page, cartaz — algo que você prefere ajustar no visual, não no código." },
+  { n:"dataviz", inv:"automática", tipo:"auto",
+    para:"Regras de gráfico e painel: tipo de gráfico certo para cada dado, paleta acessível, eixos, legendas, coerência entre tema claro e escuro.",
+    quando:"<b>Antes</b> de gerar qualquer gráfico — inclusive os de giro, cobertura e estoque parado. Se um gráfico saiu sem ela, provavelmente saiu ilegível." },
+  { n:"artifact-design", inv:"automática", tipo:"auto",
+    para:"Fundamentos de design para artefatos publicados no claude.ai.",
+    quando:"Sempre antes de publicar um artefato — relatório, painel, página compartilhável." },
+  { n:"artifact-diagramming", inv:"automática", tipo:"auto",
+    para:"Como desenhar um diagrama que mostra o mecanismo real, legível nos dois temas.",
+    quando:"Explicar fluxo — o caminho de uma transferência entre filiais, o fluxo fiscal da substituição tributária." },
+  { n:"artifact-capabilities", inv:"automática", tipo:"auto",
+    para:"Recursos de tempo de execução de um artefato: ler dado ao vivo, guardar estado entre pessoas, entregar arquivo, atualizar-se sozinho.",
+    quando:"O painel precisa ser vivo, não uma foto." },
+  { n:"code-review", inv:"/code-review", tipo:"cmd",
+    para:"Revisa a mudança atual, um pull request, branch ou caminho, buscando erro de correção e simplificação. Aceita nível de esforço e a opção de já aplicar as correções.",
+    quando:"Antes de considerar um script confiável." },
+  { n:"simplify", inv:"/simplify", tipo:"cmd",
+    para:"Revisa e já aplica limpeza de reuso, simplificação e eficiência. Só qualidade — não caça bug.",
+    quando:"O script funciona mas está confuso." },
+  { n:"security-review", inv:"/security-review", tipo:"cmd",
+    para:"Revisão de segurança das mudanças pendentes.",
+    quando:"Mexeu em credencial, conexão com o Protheus ou envio de e-mail." },
+  { n:"run", inv:"/run", tipo:"cmd",
+    para:"Sobe e dirige a aplicação do projeto para ver a mudança funcionando de verdade.",
+    quando:"Confirmar comportamento real, não só teste." },
+  { n:"init", inv:"/init", tipo:"cmd",
+    para:"Cria um <code>CLAUDE.md</code> novo documentando a pasta.",
+    quando:"Só ao abrir um projeto novo — o brain já tem o seu, bem mais rico que o gerado." },
+  { n:"update-config", inv:"automática", tipo:"auto",
+    para:"Configura o Claude Code pelo <code>settings.json</code>: permissões, variáveis de ambiente e <b>hooks</b>.",
+    quando:"Toda vez que você pedir &ldquo;de agora em diante, sempre que X&rdquo;. Comportamento automático de verdade vira hook, não memória." },
+  { n:"keybindings-help", inv:"automática", tipo:"auto",
+    para:"Personaliza atalhos de teclado.",
+    quando:"Quer remapear uma tecla ou criar uma combinação." },
+  { n:"fewer-permission-prompts", inv:"/fewer-permission-prompts", tipo:"cmd",
+    para:"Varre o histórico e monta lista de permissões para parar de perguntar sobre comandos de leitura que você sempre aprova.",
+    quando:"Cansou de confirmar a mesma coisa." },
+  { n:"loop", inv:"/loop [intervalo] &lt;tarefa&gt;", tipo:"cmd",
+    para:"Roda um prompt ou comando em intervalo recorrente dentro da sessão.",
+    quando:"Acompanhar algo que muda — uma importação longa, um processo do Protheus." },
+  { n:"schedule", inv:"/schedule", tipo:"cmd",
+    para:"Cria, edita, lista e roda agentes agendados na nuvem, por cron. Também serve para agendamento único.",
+    quando:"Mexer no briefing matinal ou criar rotina nova. É o par da pasta <code>Rotinas/</code>." },
+  { n:"claude-api", inv:"automática", tipo:"auto",
+    para:"Referência da API da Anthropic: identificadores de modelo, preço, parâmetros, streaming, uso de ferramenta, cache.",
+    quando:"Qualquer código que chame o modelo. Nunca responder de memória sobre preço ou nome de modelo." }]
+},
+{
+  id:"desktop", t:"Claude Desktop (aplicativo da Microsoft Store)",
+  note:"Instaladas no aplicativo, não no Claude Code. Não valem nesta janela de terminal — só na conversa do app.",
+  skills:[
+  { n:"xlsx", inv:"automática no app", tipo:"ghost",
+    para:"Criar, ler, corrigir e converter planilhas .xlsx, .xlsm, .csv e .tsv — fórmula, formatação, gráfico, limpeza de dado sujo.",
+    quando:"A entrega é uma planilha. É a skill mais usada do seu dia a dia no aplicativo.",
+    alerta:"Vale a regra do brain: nunca gravar com openpyxl em arquivo que tenha fórmula — apaga o valor em cache. Gravar pelo Excel via COM." },
+  { n:"docx", inv:"automática no app", tipo:"ghost",
+    para:"Documentos Word: criar, ler, editar, template, sumário, cabeçalho, controle de alterações.",
+    quando:"Precisa de um documento formal — contrato, memorando, comunicado." },
+  { n:"pdf", inv:"automática no app", tipo:"ghost",
+    para:"Tudo em PDF: extrair texto e tabela, juntar, dividir, girar, marca de água, preencher formulário, reconhecer texto de digitalização.",
+    quando:"Nota, catálogo de fornecedor, boleto, ficha técnica escaneada." },
+  { n:"pptx", inv:"automática no app", tipo:"ghost",
+    para:"Apresentações: montar deck, ler slides, editar, template, notas do apresentador.",
+    quando:"Reunião de resultado, apresentação para a equipe comercial." },
+  { n:"morning", inv:"/morning (no app)", tipo:"ghost",
+    para:"Renderiza o briefing matinal como artefato HTML, ou o instala como tarefa recorrente de dia útil.",
+    quando:"Ver ou reconfigurar o briefing. Pergunta solta sobre a agenda não é pedido de briefing." },
+  { n:"skill-creator", inv:"automática no app", tipo:"ghost",
+    para:"Cria, edita, otimiza e mede skills — inclusive teste de acionamento e análise de variância da descrição.",
+    quando:"Criar skill nova pelo aplicativo. Foi por aqui que a <code>vidrama-saldos</code> nasceu." },
+  { n:"consolidate-memory", inv:"automática no app", tipo:"ghost",
+    para:"Passa a limpo os arquivos de memória: junta duplicata, corrige fato velho, poda o índice.",
+    quando:"A memória acumulou contradição ou fato desatualizado." },
+  { n:"import-memory", inv:"automática no app", tipo:"ghost",
+    para:"Traz a memória de <b>outro</b> assistente (ChatGPT, Gemini) para a memória do Claude: você cola o export, ela separa perfil, projetos, pessoas e temas, mostra o plano e só grava depois do seu ok. Só acrescenta — nunca reescreve nem apaga linha que já existe.",
+    quando:"Uma única vez, se você decidir migrar histórico de outro assistente para cá.",
+    alerta:"Trata o texto colado como <b>dado, nunca como ordem</b>, e descarta por regra o que for sensível — saúde, valores, documento, endereço, nome de familiar. Ou seja: <b>não serve para carregar dado da empresa</b>; dado comercial ela recusa. Para isso o caminho é o brain, não a memória. E é só no aplicativo: nesta janela de terminal não existe." },
+  { n:"explain-usage", inv:"automática no app", tipo:"ghost",
+    para:"Explica para onde foram os tokens da sessão, com um gráfico simples.",
+    quando:"Quer entender o consumo." },
+  { n:"schedule (app)", inv:"automática no app", tipo:"ghost",
+    para:"Cria ou atualiza tarefa agendada dentro do aplicativo.",
+    quando:"&ldquo;Todo dia às tantas&rdquo;, &ldquo;me lembra em uma hora&rdquo;." },
+  { n:"setup-cowork", inv:"automática no app", tipo:"ghost",
+    para:"Configuração guiada do Cowork: instala plugins conforme o seu papel e conecta as ferramentas.",
+    quando:"Só na primeira configuração." },
+  { n:"vidrama-saldos (cópia no app)", inv:"automática no app", tipo:"ghost",
+    para:"A mesma skill de estoque, instalada também no aplicativo.",
+    quando:"Ao tratar de estoque pelo aplicativo em vez do terminal.",
+    alerta:"Existem duas cópias — aplicativo e projeto. Ao mudar uma regra, atualize <b>as duas</b>, senão o app e o terminal passam a calcular diferente." }]
+}
+];
+
+/* ================================ RENDER ================================ */
+const tipoLabel = { auto:"automática", cmd:"comando", ghost:"só no app" };
+let total = 0, nAuto = 0, nCmd = 0;
+const toc = [], html = [];
+
+for (const g of GRUPOS) {
+  const links = [], cards = [];
+  for (const s of g.skills) {
+    total++;
+    if (s.tipo === "auto") nAuto++; else if (s.tipo === "cmd") nCmd++;
+    const id = "s-" + s.n.replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-+|-+$/g, "").toLowerCase();
+    const blob = [s.n, s.para, s.quando, s.onde, s.alerta, g.t]
+      .filter(Boolean).join(" ").replace(/<[^>]+>/g, "").toLowerCase().replace(/"/g, "");
+    links.push('<li><a href="#' + id + '">' + s.n + '</a></li>');
+    cards.push(
+      '<article class="card" id="' + id + '" data-b="' + blob + '">' +
+        '<div class="ch"><h3>' + s.n + '</h3>' +
+        '<span class="tag ' + (s.tipo === "auto" ? "auto" : s.tipo === "ghost" ? "ghost" : "") + '">' +
+        tipoLabel[s.tipo] + '</span></div>' +
+        '<dl>' +
+          '<dt>Para que serve</dt><dd class="ink">' + s.para + '</dd>' +
+          '<dt>Quando usar</dt><dd>' + s.quando + '</dd>' +
+          '<dt>Como acionar</dt><dd><code>' + s.inv + '</code></dd>' +
+          (s.onde ? '<dt>Onde está</dt><dd>' + s.onde + '</dd>' : '') +
+        '</dl>' +
+        (s.alerta ? '<div class="alerta">' + s.alerta + '</div>' : '') +
+      '</article>');
+  }
+  toc.push('<div class="toc-g"><a href="#' + g.id + '">' + g.t +
+    '<span class="n">' + g.skills.length + '</span></a><ul>' + links.join("") + '</ul></div>');
+  html.push('<section class="grupo" id="' + g.id + '"><div class="gh"><h2>' + g.t + '</h2>' +
+    (g.note ? '<p class="gnote">' + g.note + '</p>' : '') + '</div>' + cards.join("") + '</section>');
+}
+
+document.getElementById("toc").innerHTML = toc.join("");
+document.getElementById("conteudo").innerHTML = html.join("");
+document.getElementById("stats").innerHTML =
+  '<span class="stat"><b>' + total + '</b> skills catalogadas</span>' +
+  '<span class="stat"><b>' + nAuto + '</b> de acionamento automático</span>' +
+  '<span class="stat"><b>' + nCmd + '</b> por comando</span>' +
+  '<span class="stat"><b>' + GRUPOS.length + '</b> grupos</span>';
+
+/* ================================ FILTRO ================================ */
+const busca = document.getElementById("busca");
+busca.addEventListener("input", function () {
+  const q = busca.value.trim().toLowerCase();
+  let visiveis = 0;
+  for (const sec of document.querySelectorAll("section.grupo")) {
+    let n = 0;
+    for (const c of sec.querySelectorAll(".card")) {
+      const ok = !q || c.dataset.b.indexOf(q) !== -1;
+      c.classList.toggle("hide", !ok);
+      if (ok) n++;
+    }
+    sec.classList.toggle("hide", n === 0);
+    visiveis += n;
+  }
+  document.getElementById("vazio").style.display = visiveis ? "none" : "block";
+});
+busca.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") { busca.value = ""; busca.dispatchEvent(new Event("input")); }
+});
+</script>
+</body>
+</html>
