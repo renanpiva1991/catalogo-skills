@@ -116,7 +116,8 @@ footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--ink3);fo
       <code>.claude/hooks/vigia_skills.py</code> compara as pastas de skills e comandos — do projeto,
       globais e do Claude Desktop — com os nomes catalogados aqui, e cobra o acerto se achar diferença.
       Ele só avisa; quem escreve a entrada é o Claude.
-      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>25/08/2026</b>
+      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>30/09/2026</b>
+      <br>Irmão deste catálogo: <code>Conhecimento/catalogo-de-agentes.html</code> — as skills são as ferramentas, os agentes são quem as usa.
     </footer>
   </main>
 </div>
@@ -139,20 +140,31 @@ const GRUPOS = [
     alerta:"É a skill que separa <b>COMPRA</b> de <b>TRANSFERÊNCIA</b> — dois comandos diferentes, já confundidos uma vez com erro real. Se um cálculo de estoque começar sem ela carregada, pare e exija."
   },
   { n:"vidrama-produtos", inv:"automática", tipo:"auto",
-    para:"A enciclopédia técnica do portfólio: o que cada produto <em>é</em> e como funciona — tipos de vidro (temperado, laminado, PVB, acústico, PET, HUD, térmico), leitura de descrição e complementos (SER, JAN, SENS, ANT, MOLD, ACUST), marcas e fabricantes, adesivos e primmers, sensores de chuva, gravação de chassi, lâminas, linha Bosch, ferramentas, polimento e reparo de trincas.",
-    quando:"Dúvida de produto, não de estoque. Interpretar um código ou uma descrição, comparar equivalentes, explicar uma tecnologia a cliente ou vendedor, entender as bolinhas de status e a coluna ORI das cotações.",
-    onde:"<code>.claude/skills/vidrama-produtos/</code> — 12 referências temáticas mais os scripts de extração da enciclopédia.",
-    alerta:"Dupla natural com a <code>vidrama-saldos</code>: uma diz <em>o que é o item</em>, a outra <em>quanto ter dele</em>. Agrupar códigos equivalentes exige as duas."
+    para:"O conhecimento de produto em <b>duas fontes que se complementam</b>. A enciclopédia técnica diz o que cada produto <em>é</em> e como funciona — tipos de vidro (temperado, laminado, PVB, acústico, PET, HUD, térmico), leitura de descrição e complementos (SER, JAN, SENS, ANT, MOLD, ACUST), marcas e fabricantes, adesivos e primmers, sensores de chuva, gravação de chassi, lâminas, linha Bosch, ferramentas, polimento e reparo de trincas. O <b>catálogo comercial 2026</b> diz o que está no portfólio e com que código pedir: 176 itens com descrição, medida e embalagem, as linhas Bosch anunciadas e o endereço das cinco unidades.",
+    quando:"Dúvida de produto, não de estoque. Interpretar um código ou uma descrição, comparar equivalentes, explicar uma tecnologia a cliente ou vendedor, entender as bolinhas de status e a coluna ORI das cotações. Também para o catálogo: o que a empresa oferece, qual o código de um acessório, se um item saiu de linha.",
+    onde:"<code>.claude/skills/vidrama-produtos/</code> — 14 referências temáticas, os scripts de extração da enciclopédia e o do catálogo em PDF.",
+    alerta:"Em conflito entre as duas fontes decide o assunto, não a data: <em>como aplicar</em> é da enciclopédia, <em>qual código e qual embalagem</em> é do catálogo. O catálogo não lista vidro nenhum — só acessório, ferramenta e Bosch. E segue valendo a dupla com a <code>vidrama-saldos</code>: uma diz <em>o que é o item</em>, a outra <em>quanto ter dele</em>."
   },
   { n:"instalar-skills", inv:"automática", tipo:"auto",
     para:"O processo fechado de instalar pacote de skills no brain: clonar e inspecionar antes de copiar, triar o que serve, checar duplicata e colisão de nome, adaptar a skill ao ambiente daqui e <b>atualizar as quatro bases</b> — este catálogo, a memória, o README do projeto e o <code>ONDE PARAMOS</code> — antes do commit.",
     quando:"Você mandar instalar skill, pacote, plugin ou comando novo — link do GitHub, pasta, zip, marketplace. Também para atualizar um pacote já instalado, remover uma skill, ou quando o vigia do início de sessão acusar diferença entre o que está instalado e este catálogo.",
     onde:"<code>.claude/skills/instalar-skills/</code> — SKILL.md mais a referência <code>catalogo</code>, que explica a cirurgia neste arquivo.",
     alerta:"Duas armadilhas que ela existe para evitar: pacote que manda copiar o <code>CLAUDE.md</code> dele para a raiz (sobrescreveria o da Vidrama) e skill que pressupõe ferramenta inexistente aqui — a adaptação local vai marcada com data, para ser reaplicada quando o upstream atualizar." },
+  { n:"vidrama-catalogodeskills", inv:"automática", tipo:"auto",
+    para:"Leva <b>este catálogo para o grupo inteiro</b>: cada colaborador monta o próprio, com as skills que tem, no mesmo padrão deste — mesmo visual, mesmos sete campos, mesmos grupos. Traz o modelo em branco, um inventário que compara o disco com o catálogo (projeto, global, comandos, plugins e Claude Desktop) e um validador que acusa campo fora do padrão, CSS alterado, texto em inglês e credencial escrita.",
+    quando:"Quando um colaborador for montar o catálogo pela primeira vez, instalar ou remover skill, perguntar <em>&ldquo;que skills eu tenho?&rdquo;</em>, ou mandar o catálogo dele para conferir se está no padrão. Aqui no brain serve também de conferência deste arquivo.",
+    onde:"<code>.claude/skills/vidrama-catalogodeskills/</code> — SKILL.md, <code>assets/catalogo-modelo.html</code> (gerado a partir deste catálogo), as referências <code>padrao-de-escrita</code> e <code>vigia</code>, e os scripts <code>novo_catalogo</code>, <code>inventario_skills</code> e <code>validar_catalogo</code>.",
+    alerta:"O modelo copia o CSS e o render <b>deste</b> arquivo, e o validador compara byte a byte. Se o visual daqui mudar, regenere <code>assets/catalogo-modelo.html</code>, senão todo catálogo novo sai &ldquo;fora do padrão&rdquo;. O inventário enxerga mais que o <code>vigia_skills.py</code>: comandos do projeto, plugins e a subpasta <code>synced</code>." },
   { n:"lembrete-aprovacao-oc", inv:"automática / agendada", tipo:"auto",
     para:"Lembrete de fim de expediente: às 18h em dia útil, avisa para aprovar as ordens de compra antes de fechar o dia.",
     quando:"Roda por agendamento. Você só invoca à mão para testar o lembrete ou reaproveitar o texto.",
     onde:"<code>.claude/skills/lembrete-aprovacao-oc/SKILL.md</code>"
+  },
+  { n:"/agentes", inv:"<code>/agentes</code>", tipo:"cmd",
+    para:"Atualiza o <b>catálogo de agentes do PRISMA</b> — o controle de portfólio dos agentes setoriais: em que estágio cada um está, o que faz, o que não faz, para onde aponta e qual é a próxima parada. Levanta as evidências sozinho (<code>Setores/</code>, <code>Projetos/</code>, memória, <code>git log</code>), mostra o diff, e só grava depois da sua aprovação.",
+    quando:"Agente novo, estágio que subiu, passo dos 14 respondido, ideia de agente que apareceu na conversa. Também quando quiser só olhar o quadro — a página abre do disco ou pelo Artifact.",
+    onde:"<code>.claude/commands/agentes.md</code> · a fonte é <code>Conhecimento/catalogo-de-agentes.html</code>, com os verificadores <code>Ferramentas/verificar_agentes.py</code> e <code>Ferramentas/publicar_catalogo_agentes.py</code>.",
+    alerta:"Os dados moram <b>dentro</b> do HTML, o que é cômodo para editar e arriscado para manter — nada impede a página de apontar para arquivo que alguém moveu. Por isso o verificador confere <b>todo caminho declarado contra o disco</b> e o publicador aborta se algum morreu. Falha do verificador quer dizer catálogo errado, não verificador errado."
   }]
 },
 {
@@ -169,7 +181,7 @@ const GRUPOS = [
     para:"Monta consulta SQL segura para tabela do Protheus, já com os filtros obrigatórios (<code>D_E_L_E_T_</code>, filial), sugerindo o índice certo pelo padrão <code>SIX</code> e avisando das armadilhas clássicas do ERP.",
     quando:"Toda vez que uma análise for buscar dado no banco em vez de esperar export manual — saldo, giro, faturamento, pedido, nota, título.",
     onde:"<code>.claude/skills/query-builder/</code>",
-    alerta:"Também tem seção &ldquo;Adaptação Vidrama&rdquo; no fim: aqui a query roda direto no banco, então vale a versão <b>Embedded SQL</b> e não a Workarea. E ela repete as regras de negócio que a consulta tem de respeitar — os armazéns que contam, os CFOPs de venda e a janela de giro."
+    alerta:"Também tem seção &ldquo;Adaptação Vidrama&rdquo; no fim: aqui a query roda direto no banco, então vale a versão <b>Embedded SQL</b> e não a Workarea. E ela repete as regras de negócio que a consulta tem de respeitar — os armazéns que contam, os CFOPs de venda, a janela de giro e o que entra como demanda."
   },
   { n:"sql-optimization", inv:"automática", tipo:"auto",
     para:"Afinação de desempenho de SQL: plano de execução, estratégia de índice, paginação, operação em lote.",
@@ -540,6 +552,17 @@ const GRUPOS = [
   { n:"setup-cowork", inv:"automática no app", tipo:"ghost",
     para:"Configuração guiada do Cowork: instala plugins conforme o seu papel e conecta as ferramentas.",
     quando:"Só na primeira configuração." },
+  { n:"setup-claude", inv:"automática no app", tipo:"ghost",
+    para:"Configuração guiada do Claude, parente do <code>setup-cowork</code>: pergunta o seu papel, sugere plugins e conectores e deixa você testar uma skill.",
+    quando:"Só ao configurar um Claude novo, como o de um colaborador que está começando a usar." },
+  { n:"docs", inv:"automática no app", tipo:"ghost",
+    para:"Documentos editáveis do próprio Claude, que se compartilham e comentam: relatório, proposta, procedimento, guia. Exportam para Word, PDF, Markdown ou Google Docs. A skill só aponta para as instruções do conector de docs.",
+    quando:"A entrega é um texto para guardar, mandar ou revisar em conjunto, e ninguém pediu um <code>.docx</code> especificamente.",
+    alerta:"Sincronizada pela conta: aparece também no Claude Code, na subpasta <code>synced</code> das skills globais. Sem o conector de docs ligado, ela não faz nada." },
+  { n:"google-workspace", inv:"automática no app", tipo:"ghost",
+    para:"O manual de uso dos conectores do Google Drive, Docs, Sheets e Slides: qual conector faz o quê e as regras para a edição cair no arquivo certo, com uma referência por aplicativo.",
+    quando:"Criar ou alterar um arquivo do Google. Só entra se os conectores do Google estiverem ligados.",
+    alerta:"Na planilha do Google, texto digitado pode virar número ou data sem aviso: a skill avisa disso antes da primeira escrita. Também é sincronizada pela conta e aparece no Claude Code." },
   { n:"vidrama-saldos (cópia no app)", inv:"automática no app", tipo:"ghost",
     para:"A mesma skill de estoque, instalada também no aplicativo.",
     quando:"Ao tratar de estoque pelo aplicativo em vez do terminal.",
