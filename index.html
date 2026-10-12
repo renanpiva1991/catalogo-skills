@@ -116,7 +116,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--ink3);fo
       <code>.claude/hooks/vigia_skills.py</code> compara as pastas de skills e comandos — do projeto,
       globais e do Claude Desktop — com os nomes catalogados aqui, e cobra o acerto se achar diferença.
       Ele só avisa; quem escreve a entrada é o Claude.
-      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>30/09/2026</b>
+      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>12/10/2026</b>
       <br>Irmão deste catálogo: <code>Conhecimento/catalogo-de-agentes.html</code> — as skills são as ferramentas, os agentes são quem as usa.
     </footer>
   </main>
@@ -199,14 +199,15 @@ const GRUPOS = [
 },
 {
   id:"metodo", t:"Método de trabalho (Superpowers)",
-  note:"Plugin obra/superpowers. Disciplina de processo — não sabem nada de vidro, sabem como não fazer besteira.",
+  note:"Pacote <code>obra/superpowers</code> <b>v7.0.0</b> (commit <code>bb92a77</code>, 09/10/2026), atualizado em 12/10/2026 — as 14 pastas trocadas pelas do upstream e a <code>diagnosing-superpowers</code> nova. Instalado como <b>cópia em <code>.claude/skills/</code></b>, não como plugin: versiona no Git, viaja para o outro computador e não injeta hook de início de sessão. Disciplina de processo — não sabem nada de vidro, sabem como não fazer besteira.",
   skills:[
   { n:"using-superpowers", inv:"automática", tipo:"auto",
     para:"Meta-skill: ensina o Claude a procurar e usar as outras skills antes de responder qualquer coisa.",
     quando:"Início de conversa. É a que garante que as demais sejam lembradas." },
   { n:"brainstorming", inv:"automática", tipo:"auto",
-    para:"Explora intenção, requisito e desenho <em>antes</em> de construir.",
-    quando:"Antes de criar qualquer coisa nova — feature, planilha, relatório, automação. Se o pedido está vago, ela deveria entrar." },
+    para:"Explora intenção, requisito e desenho <em>antes</em> de construir. Na v7 começa com uma pergunta aberta, devolve o que entendeu para você corrigir e só então dimensiona: tarefa clara faz na hora, mudança pequena combina no chat, projeto vira documento de desenho — que um subagente lê como quem vai construir e lista o que ainda falta perguntar.",
+    quando:"Antes de criar qualquer coisa nova — feature, planilha, relatório, automação, e na v7 também plano fora do software (uma campanha, uma frente nova). Se o pedido está vago, ela deveria entrar.",
+    alerta:"Ela oferece pular as perguntas logo na primeira mensagem — quando o pedido já está claro, dizer &ldquo;pode fazer&rdquo; economiza a rodada." },
   { n:"writing-plans", inv:"automática", tipo:"auto",
     para:"Transforma requisito em plano escrito, passo a passo, com pontos de conferência.",
     quando:"Tarefa de vários passos que vale registrar em arquivo — migração, refatoração grande, rotina nova." },
@@ -243,7 +244,12 @@ const GRUPOS = [
   { n:"writing-skills", inv:"automática", tipo:"auto",
     para:"Como criar, editar e validar skills — estrutura, descrição que dispara na hora certa, teste de acionamento.",
     quando:"Você pediu &ldquo;transforma isso numa skill&rdquo;. É a que deve rodar junto com a atualização deste catálogo.",
-    alerta:"Toda vez que esta skill for usada para criar algo, este arquivo precisa ganhar a entrada nova na mesma conversa." }]
+    alerta:"Toda vez que esta skill for usada para criar algo, este arquivo precisa ganhar a entrada nova na mesma conversa." },
+  { n:"diagnosing-superpowers", inv:"automática", tipo:"auto",
+    para:"Investiga uma sessão que deu errado — trabalho repetido, plano ignorado, skill que não disparou, demora, custo — lendo o transcript no disco e reportando com evidência, sem tentar consertar o superpowers.",
+    quando:"<em>&ldquo;por que essa conversa demorou tanto?&rdquo;</em>, <em>&ldquo;por que você não seguiu o plano?&rdquo;</em>, <em>&ldquo;a skill X não entrou, por quê?&rdquo;</em>.",
+    onde:"<code>.claude/skills/diagnosing-superpowers/</code> — com <code>prompts/</code>, <code>references/</code> e <code>templates/</code>.",
+    alerta:"Nova na v7 (12/10/2026), com <b>bloco de adaptação Vidrama</b>: o transcript daqui carrega custo, margem, saldo e cliente, e nada disso sai em issue ou bundle. Abrir issue no GitHub do superpowers é publicação pública — só com o texto exato aprovado pelo Renan." }]
 },
 {
   id:"especialistas", t:"Especialistas técnicos",
@@ -382,7 +388,12 @@ const GRUPOS = [
     para:"Mapeia as premissas arriscadas de uma ideia nova em 8 categorias de risco — incluindo entrada no mercado, estratégia e time.",
     quando:"Ideia nova ainda sem dado: um produto próprio em <code>Produtos/</code>, ou uma frente nova da Vidrama.",
     onde:"<code>.claude/skills/identify-assumptions-new/</code>.",
-    alerta:"É para <b>ideia nova</b>. O projeto de estoque já tem 20 meses de dado — ali a ferramenta certa é medir, não supor." }]
+    alerta:"É para <b>ideia nova</b>. O projeto de estoque já tem 20 meses de dado — ali a ferramenta certa é medir, não supor." },
+  { n:"reflect", inv:"automática", tipo:"auto",
+    para:"Para a execução no meio da conversa e reavalia em prosa corrida: deriva do objetivo original, premissa não verificada, alternativa descartada cedo demais e cinco vieses (confirmação, custo afundado, ancoragem, complexidade, recência). Fecha sempre com <b>continuar</b>, <b>mudar de rumo</b> ou <b>parar para responder uma pergunta</b>.",
+    quando:"<em>&ldquo;dá um passo atrás&rdquo;</em>, <em>&ldquo;estamos no caminho certo?&rdquo;</em>, <em>&ldquo;será que estamos complicando?&rdquo;</em> — típico depois de uma análise de margem ou de compra que foi fundo no detalhe.",
+    onde:"<code>.claude/skills/reflect/</code> — scripts <code>.py</code> opcionais.",
+    alerta:"Fora do pm-skills: veio de <code>alirezarezvani/claude-skills</code> (pasta <code>productivity/reflect</code>, commit <code>19392f7</code>, MIT), pelo catálogo do Ali, em 12/10/2026. Leva <b>bloco de adaptação Vidrama</b>: gatilhos em português, e regra já decidida pelo Renan é premissa, não viés — se a reflexão discordar, vira pergunta, nunca reescrita." }]
 },
 {
   id:"construcao", t:"Construção e auditoria do painel (ECC + shadcn)",
