@@ -116,7 +116,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--ink3);fo
       <code>.claude/hooks/vigia_skills.py</code> compara as pastas de skills e comandos — do projeto,
       globais e do Claude Desktop — com os nomes catalogados aqui, e cobra o acerto se achar diferença.
       Ele só avisa; quem escreve a entrada é o Claude.
-      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>12/10/2026</b>
+      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>19/10/2026</b>
       <br>Irmão deste catálogo: <code>Conhecimento/catalogo-de-agentes.html</code> — as skills são as ferramentas, os agentes são quem as usa.
     </footer>
   </main>
@@ -282,7 +282,22 @@ const GRUPOS = [
     para:"Transforma explicação em <b>desenho</b>: fluxo, organograma, arquitetura de sistema, mapa de processo ou de conceito. Sai em <code>.html</code> autocontido (SVG embutido, abre no navegador sem internet) ou em <code>.excalidraw</code>, que é editável à mão depois.",
     quando:"Quando a resposta seria mais clara desenhada do que escrita — o caminho de uma transferência entre filiais, o fluxo de uma OC até a aprovação, o desenho de um processo para treinar a equipe.",
     onde:"<code>.claude/skills/diagram-maker/</code> — SKILL.md mais as referências <code>svg-template</code> e <code>excalidraw-patterns</code>. De <code>openclaw/openclaw</code> (MIT), instalada em 19/08/2026.",
-    alerta:"Pisa no mesmo terreno da nativa <code>artifact-diagramming</code>. A diferença prática: esta gera <b>arquivo local</b> (bom para mandar por e-mail ou guardar em pasta); a nativa desenha <b>dentro de um artifact</b> publicado. Peça arquivo ou artifact para não ficar no criterio dele." }]
+    alerta:"Pisa no mesmo terreno da nativa <code>artifact-diagramming</code>. A diferença prática: esta gera <b>arquivo local</b> (bom para mandar por e-mail ou guardar em pasta); a nativa desenha <b>dentro de um artifact</b> publicado. Peça arquivo ou artifact para não ficar no criterio dele." },
+  { n:"impeccable", inv:"automática ou /impeccable &lt;comando&gt;", tipo:"auto",
+    para:"Direção de design de interface com critério de diretor de arte: planejar (<code>shape</code>), revisar (<code>critique</code>, <code>audit</code>), refinar (<code>polish</code>, <code>distill</code>, <code>harden</code>, <code>layout</code>, <code>typeset</code>, <code>colorize</code>, <code>clarify</code>) e documentar o sistema visual (<code>init</code>, <code>document</code>). Distingue tela de <b>operação</b> (painel, ferramenta interna: precisão e contenção) de página de <b>persuasão</b> (campanha, divulgação).",
+    quando:"Ao construir ou revisar uma tela: &ldquo;dá uma revisada no visual desse painel&rdquo;, &ldquo;esse catálogo está poluído, simplifica&rdquo;, &ldquo;o portal está pronto para mostrar?&rdquo;. Sem argumento, ela mostra o menu de comandos.",
+    onde:"<code>.claude/skills/impeccable/</code> — SKILL.md, 45 referências por comando e o lançador em <code>scripts/</code>. De <code>pbakaus/impeccable</code> (Apache 2.0), versão 4.7.0, commit <code>46b822f</code>, instalada em 19/10/2026, com bloco de adaptação Vidrama.",
+    alerta:"Na <b>primeira vez</b> o lançador baixa um executável do GitHub do próprio projeto (conferido por SHA256) para <code>%USERPROFILE%\.impeccable</code>; precisa de internet. O hook do detector (<code>/impeccable hooks on</code>) só se liga com pedido seu, porque mexe na configuração que o Codex também lê. <code>PRODUCT.md</code> e <code>DESIGN.md</code> vão na pasta do projeto, nunca na raiz do brain." },
+  { n:"ui-ux-pro-max", inv:"automática", tipo:"auto",
+    para:"Base de consulta de UI/UX que roda local: 119 regras de usabilidade e acessibilidade, paletas por tipo de produto, pares de fontes, tipos de gráfico e orientação por tecnologia (React, Tailwind, Flutter e outras). Gera um sistema de design inicial a partir de uma descrição do produto.",
+    quando:"Ao começar uma tela nova ou decidir cor, fonte, contraste, tabela ou gráfico com critério: &ldquo;qual a melhor forma de mostrar a cobertura por filial nesse painel?&rdquo;. Complementa a <code>impeccable</code>: esta responde <em>qual regra</em>, aquela conduz o trabalho.",
+    onde:"<code>.claude/skills/ui-ux-pro-max/</code> — SKILL.md, <code>data/</code> com as bases em CSV e o buscador <code>scripts/search.py</code>. De <code>nextlevelbuilder/ui-ux-pro-max-skill</code> (MIT), commit <code>56ea9cf</code>, instalada em 19/10/2026.",
+    alerta:"A base é em <b>inglês</b>: consulta em português volta vazia. Roda pelo Python 3.12 com o caminho completo, sem o modo <code>-I</code>. Nenhum dado da Vidrama vai na consulta. Para ferramenta interna, ignorar recomendação de padrão de landing page." },
+  { n:"banner-design", inv:"automática", tipo:"auto",
+    para:"Banner e arte em formato fixo: capa de rede social, anúncio, cabeçalho de site, peça impressa. Monta 2 ou 3 direções de arte em HTML e CSS, nas medidas exatas de cada plataforma e com área segura.",
+    quando:"&ldquo;faz a arte da campanha&rdquo;, &ldquo;preciso de um banner para o WhatsApp dos consultores&rdquo;, capa de grupo, anúncio de promoção.",
+    onde:"<code>.claude/skills/banner-design/</code> — SKILL.md e a referência de tamanhos e estilos. Do mesmo pacote <code>ui-ux-pro-max-skill</code>, instalada em 19/10/2026.",
+    alerta:"Usa a marca de <code>Projetos/Logomarcas e padrões/</code> e não inventa paleta. Na arte de campanha da Nami, preço DE e PARA e % OFF, <b>nunca custo ou margem</b>. Arte para cliente é rascunho até você aprovar." }]
 },
 {
   id:"caveman", t:"Modo caveman — economia de token",
