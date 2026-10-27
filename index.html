@@ -116,7 +116,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--ink3);fo
       <code>.claude/hooks/vigia_skills.py</code> compara as pastas de skills e comandos — do projeto,
       globais e do Claude Desktop — com os nomes catalogados aqui, e cobra o acerto se achar diferença.
       Ele só avisa; quem escreve a entrada é o Claude.
-      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>19/10/2026</b>
+      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>27/10/2026</b>
       <br>Irmão deste catálogo: <code>Conhecimento/catalogo-de-agentes.html</code> — as skills são as ferramentas, os agentes são quem as usa.
     </footer>
   </main>
@@ -150,6 +150,11 @@ const GRUPOS = [
     quando:"Você mandar instalar skill, pacote, plugin ou comando novo — link do GitHub, pasta, zip, marketplace. Também para atualizar um pacote já instalado, remover uma skill, ou quando o vigia do início de sessão acusar diferença entre o que está instalado e este catálogo.",
     onde:"<code>.claude/skills/instalar-skills/</code> — SKILL.md mais a referência <code>catalogo</code>, que explica a cirurgia neste arquivo.",
     alerta:"Duas armadilhas que ela existe para evitar: pacote que manda copiar o <code>CLAUDE.md</code> dele para a raiz (sobrescreveria o da Vidrama) e skill que pressupõe ferramenta inexistente aqui — a adaptação local vai marcada com data, para ser reaplicada quando o upstream atualizar." },
+  { n:"second-brain", inv:"automática", tipo:"auto",
+    para:"O <b>Prisma-Architect</b>: monta e opera Second Brains (cofres Obsidian) para pessoas e setores da Vidrama, no método PARA. Tom de copiloto, linguagem de quem não é de TI, e nunca pede para a pessoa rodar comando.",
+    quando:"&ldquo;cria um second brain para o Financeiro&rdquo;, padronizar, auditar ou unificar cofres de colaboradores, ou decidir o que se compartilha com colegas.",
+    onde:"Pasta <code>second-brain</code> nas skills <b>globais</b> (<code>~/.claude/skills</code>), com <code>references/</code>, <code>assets/</code> e um <code>_backup-2026-09-15</code>. Catalogada em 27/10/2026, quando o vigia acusou a falta.",
+    alerta:"O texto da skill ainda fala no <b>framework de 14 passos</b>; o roteiro vigente do PRISMA é a <b>v3, de 10 passos</b> (19/10/2026). Conferir com o <code>roteiro-prisma-v3.md</code> antes de aplicar." },
   { n:"vidrama-catalogodeskills", inv:"automática", tipo:"auto",
     para:"Leva <b>este catálogo para o grupo inteiro</b>: cada colaborador monta o próprio, com as skills que tem, no mesmo padrão deste — mesmo visual, mesmos sete campos, mesmos grupos. Traz o modelo em branco, um inventário que compara o disco com o catálogo (projeto, global, comandos, plugins e Claude Desktop) e um validador que acusa campo fora do padrão, CSS alterado, texto em inglês e credencial escrita.",
     quando:"Quando um colaborador for montar o catálogo pela primeira vez, instalar ou remover skill, perguntar <em>&ldquo;que skills eu tenho?&rdquo;</em>, ou mandar o catálogo dele para conferir se está no padrão. Aqui no brain serve também de conferência deste arquivo.",
@@ -201,6 +206,10 @@ const GRUPOS = [
   id:"metodo", t:"Método de trabalho (Superpowers)",
   note:"Pacote <code>obra/superpowers</code> <b>v7.0.0</b> (commit <code>bb92a77</code>, 09/10/2026), atualizado em 12/10/2026 — as 14 pastas trocadas pelas do upstream e a <code>diagnosing-superpowers</code> nova. Instalado como <b>cópia em <code>.claude/skills/</code></b>, não como plugin: versiona no Git, viaja para o outro computador e não injeta hook de início de sessão. Disciplina de processo — não sabem nada de vidro, sabem como não fazer besteira.",
   skills:[
+  { n:"karpathy-guidelines", inv:"automática", tipo:"auto",
+    para:"Quatro regras de comportamento contra os erros típicos de IA escrevendo código: <b>pensar antes</b> (explicitar suposição, perguntar na dúvida), <b>simplicidade</b>, <b>mudança cirúrgica</b> (não mexer no que não foi pedido) e <b>critério de sucesso verificável</b> antes de começar.",
+    quando:"Escrever, revisar ou refatorar qualquer script do vault ou do portal.",
+    onde:"<code>.claude/skills/karpathy-guidelines/</code>. De <code>multica-ai/andrej-karpathy-skills</code> (MIT, commit <code>2c60614</code>), instalada em 27/10/2026. Sem adaptação: não pressupõe nada do ambiente." },
   { n:"using-superpowers", inv:"automática", tipo:"auto",
     para:"Meta-skill: ensina o Claude a procurar e usar as outras skills antes de responder qualquer coisa.",
     quando:"Início de conversa. É a que garante que as demais sejam lembradas." },
@@ -283,6 +292,11 @@ const GRUPOS = [
     quando:"Quando a resposta seria mais clara desenhada do que escrita — o caminho de uma transferência entre filiais, o fluxo de uma OC até a aprovação, o desenho de um processo para treinar a equipe.",
     onde:"<code>.claude/skills/diagram-maker/</code> — SKILL.md mais as referências <code>svg-template</code> e <code>excalidraw-patterns</code>. De <code>openclaw/openclaw</code> (MIT), instalada em 19/08/2026.",
     alerta:"Pisa no mesmo terreno da nativa <code>artifact-diagramming</code>. A diferença prática: esta gera <b>arquivo local</b> (bom para mandar por e-mail ou guardar em pasta); a nativa desenha <b>dentro de um artifact</b> publicado. Peça arquivo ou artifact para não ficar no criterio dele." },
+  { n:"diagram-design", inv:"automática", tipo:"auto",
+    para:"Diagrama <b>editorial e com marca</b> em HTML/SVG/PNG, com mais de 50 tipos: fluxograma, swimlane, arquitetura, ER e esquema de banco, linha do tempo, Gantt, Sankey, espinha de peixe, jornada, blueprint de serviço, mapa de Wardley, funil, waterfall. Importa <code>.drawio</code>, Mermaid e <code>.excalidraw</code> e confere o próprio desenho com um script de checagem.",
+    quando:"Desenhar o fluxo do Marinho ou de um agente do PRISMA para apresentação, o caminho da OC até a entrada da nota, o organograma de um setor, o mapa das tabelas do Protheus que uma rotina usa.",
+    onde:"<code>.claude/skills/diagram-design/</code> mais <code>references/</code> (um arquivo por tipo), <code>assets/</code> (exemplos) e <code>scripts/</code>. De <code>cathrynlavery/diagram-design</code> (MIT, commit <code>0cf73c3</code>), instalada em 27/10/2026.",
+    alerta:"Ainda com a <b>pele do upstream</b>: aplicar as cores e fontes da Vidrama (onboarding a partir de <code>Projetos/Logomarcas e padrões/</code>) reescreve o <code>style-guide.md</code> e espera aprovação do Renan. Divisão com as vizinhas: <code>dataviz</code> para gráfico de dado, <code>artifact-diagramming</code> dentro de artifact, <code>diagram-maker</code> para Excalidraw." },
   { n:"impeccable", inv:"automática ou /impeccable &lt;comando&gt;", tipo:"auto",
     para:"Direção de design de interface com critério de diretor de arte: planejar (<code>shape</code>), revisar (<code>critique</code>, <code>audit</code>), refinar (<code>polish</code>, <code>distill</code>, <code>harden</code>, <code>layout</code>, <code>typeset</code>, <code>colorize</code>, <code>clarify</code>) e documentar o sistema visual (<code>init</code>, <code>document</code>). Distingue tela de <b>operação</b> (painel, ferramenta interna: precisão e contenção) de página de <b>persuasão</b> (campanha, divulgação).",
     quando:"Ao construir ou revisar uma tela: &ldquo;dá uma revisada no visual desse painel&rdquo;, &ldquo;esse catálogo está poluído, simplifica&rdquo;, &ldquo;o portal está pronto para mostrar?&rdquo;. Sem argumento, ela mostra o menu de comandos.",
@@ -314,7 +328,50 @@ const GRUPOS = [
     quando:"Revisão de pull request em que você quer o sinal, não o texto." },
   { n:"caveman-help", inv:"/caveman-help", tipo:"cmd",
     para:"Cartão de referência de todos os modos caveman.",
-    quando:"Esqueceu quais níveis existem." }]
+    quando:"Esqueceu quais níveis existem." },
+  { n:"ponytail", inv:"/ponytail [lite|full|ultra]", tipo:"cmd",
+    para:"Modo <b>dev sênior preguiçoso</b>: a menor mudança que resolve o problema inteiro, sem abstração, opção ou dependência que ninguém pediu, e uma resposta que se entende numa leitura. Fecha dizendo o que não conferiu. Atalho conhecido vira comentário <code>shortcut:</code> no código.",
+    quando:"&ldquo;ponytail&rdquo;, &ldquo;faz o mais simples&rdquo;, ou quando um script do vault está crescendo mais do que o problema pede.",
+    onde:"<code>.claude/skills/ponytail/</code>. De <code>dietrichgebert/ponytail</code> (MIT, commit <code>09c434a</code>), instalada em 27/10/2026.",
+    alerta:"Só sob comando, como o caveman: os <b>hooks do pacote não foram instalados</b> (mudariam os hooks aprovados do Claude e do Codex). Nunca corta conferência, fecho do Saldos ou prova de execução. Ficaram de fora <code>ponytail-review</code> e <code>ponytail-audit</code> (sobrepõem <code>code-review</code>, <code>improve</code> e <code>production-audit</code>), <code>ponytail-gain</code> e <code>ponytail-help</code>." },
+  { n:"ponytail-debt", inv:"/ponytail-debt", tipo:"cmd",
+    para:"Junta todo comentário <code>shortcut:</code> do código num <b>livro de dívida técnica</b>: o que foi adiado, o limite e quando atualizar. Só lista, não muda nada.",
+    quando:"&ldquo;o que ficou de atalho nos scripts?&rdquo;, antes de transformar um script do vault em rotina recorrente.",
+    onde:"<code>.claude/skills/ponytail-debt/</code>. Mesmo pacote do <code>ponytail</code>." }]
+},
+{
+  id:"analise", t:"Análise estatística e evidência",
+  note:"6 de 177 skills do pacote <code>k-dense-ai/scientific-agent-skills</code>. As outras 171 são de biologia, química, física, medicina e laboratório, ofícios que a Vidrama não exerce, e ficaram disponíveis, não instaladas. Todas levam o bloco <b>Adaptação Vidrama</b>: dado é SKU, filial e período; filial separada; tendência YoY; margem em MC-PROT e MC-PLAN; Python 3.12 pelo caminho completo.",
+  skills:[
+  { n:"statistical-analysis", inv:"automática", tipo:"auto",
+    para:"Análise estatística guiada: escolhe o teste certo, confere as premissas, calcula <b>tamanho do efeito</b> e intervalo de confiança, e oferece alternativa bayesiana. Teste t, ANOVA, qui-quadrado, correlação, regressão, não paramétricos.",
+    quando:"&ldquo;a campanha vendeu mais mesmo ou foi acaso?&rdquo;, comparar duas filiais ou dois períodos, medir se o corte de preço mudou o volume.",
+    onde:"<code>.claude/skills/statistical-analysis/</code>. De <code>k-dense-ai/scientific-agent-skills</code> (MIT, commit <code>5f2bc03</code>), instalada em 27/10/2026.",
+    alerta:"Precisa de <code>statsmodels</code> e <code>matplotlib</code>, que o Python 3.12 não tinha em 27/10/2026; instalar pede aprovação. Relatório APA não é o padrão daqui." },
+  { n:"statsmodels", inv:"automática", tipo:"auto",
+    para:"Modelos estatísticos em Python: regressão (OLS, GLM), modelos de contagem, mistos, e <b>séries temporais ARIMA e SARIMAX</b>, que tratam a sazonalidade de forma explícita, com diagnóstico e incerteza.",
+    quando:"Elasticidade de preço por subgrupo, previsão de demanda com a sazonalidade de out a mar, separar efeito de preço do efeito de estação.",
+    onde:"<code>.claude/skills/statsmodels/</code>. De <code>k-dense-ai/scientific-agent-skills</code> (MIT, commit <code>5f2bc03</code>), instalada em 27/10/2026.",
+    alerta:"O pacote <code>statsmodels</code> não está instalado no Python 3.12; instalar pede aprovação." },
+  { n:"statistical-power", inv:"automática", tipo:"auto",
+    para:"Calcula <b>tamanho de amostra e poder</b> antes do teste: quantos SKUs, semanas ou filiais são precisos para enxergar um efeito, e qual o menor efeito detectável com o que se tem.",
+    quando:"&ldquo;quantos itens preciso no piloto de preço para o resultado valer?&rdquo;, &ldquo;duas semanas de campanha bastam?&rdquo;.",
+    onde:"<code>.claude/skills/statistical-power/</code>. De <code>k-dense-ai/scientific-agent-skills</code> (MIT, commit <code>5f2bc03</code>), instalada em 27/10/2026." },
+  { n:"experimental-design", inv:"automática", tipo:"auto",
+    para:"Desenha o experimento <b>antes</b> de coletar: grupo de controle, sorteio, blocos e estratificação para não confundir efeito de preço com efeito de filial, de estação ou de mix.",
+    quando:"Montar o piloto de preço, o rodízio de campanhas da Nami, ou qualquer &ldquo;vamos testar e ver&rdquo;.",
+    onde:"<code>.claude/skills/experimental-design/</code>. De <code>k-dense-ai/scientific-agent-skills</code> (MIT, commit <code>5f2bc03</code>), instalada em 27/10/2026.",
+    alerta:"Matriz de DOE usa <code>pydoe</code>, não instalado. A regra de negócio (filial, armazém 04, quem entra na campanha) continua vindo da <code>vidrama-saldos</code> e da decisão do Renan." },
+  { n:"scientific-critical-thinking", inv:"automática", tipo:"auto",
+    para:"Avalia a <b>qualidade da evidência</b> por trás de uma conclusão: viés, fator de confusão, causalidade contra correlação, amostra pequena, comparação injusta.",
+    quando:"Antes de levar um número ao Renan ou a um colaborador: &ldquo;esse resultado se sustenta?&rdquo;. O caso típico daqui é a janela desigual que inverteu um resultado de +15% para &minus;54%.",
+    onde:"<code>.claude/skills/scientific-critical-thinking/</code>. De <code>k-dense-ai/scientific-agent-skills</code> (MIT, commit <code>5f2bc03</code>), instalada em 27/10/2026.",
+    alerta:"A figura opcional usa a <code>scientific-schematics</code> com chave da OpenRouter, que não existe aqui: usar <code>diagram-design</code>." },
+  { n:"what-if-oracle", inv:"automática", tipo:"auto",
+    para:"Análise estruturada de <b>cenários</b>: favorável, base, adverso, improvável, contrário e de segunda ordem, cada um com premissa, evidência e o <b>gatilho</b> que indica que ele está acontecendo.",
+    quando:"Antes de uma decisão grande: recompra, mudança de preço de uma linha, trocar fornecedor, abrir ou fechar algo.",
+    onde:"<code>.claude/skills/what-if-oracle/</code>. De <code>k-dense-ai/scientific-agent-skills</code> (MIT, commit <code>5f2bc03</code>), instalada em 27/10/2026.",
+    alerta:"Cenário não é previsão: não estima probabilidade nem efeito. A decisão continua com o Renan." }]
 },
 {
   id:"pesquisa", t:"Pesquisa e mercado",
