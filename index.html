@@ -117,7 +117,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--ink3);fo
       <code>.claude/hooks/vigia_skills.py</code> compara as pastas de skills e comandos — do projeto,
       globais e do Claude Desktop — com os nomes catalogados aqui, e cobra o acerto se achar diferença.
       Ele só avisa; quem escreve a entrada é o Claude.
-      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>27/10/2026</b>
+      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>05/11/2026</b>
       <br>Irmão deste catálogo: <code>Conhecimento/catalogo-de-agentes.html</code> — as skills são as ferramentas, os agentes são quem as usa.
     </footer>
   </main>
@@ -209,8 +209,8 @@ const GRUPOS = [
   skills:[
   { n:"karpathy-guidelines", inv:"automática", tipo:"auto",
     para:"Quatro regras de comportamento contra os erros típicos de IA escrevendo código: <b>pensar antes</b> (explicitar suposição, perguntar na dúvida), <b>simplicidade</b>, <b>mudança cirúrgica</b> (não mexer no que não foi pedido) e <b>critério de sucesso verificável</b> antes de começar.",
-    quando:"Escrever, revisar ou refatorar qualquer script do vault ou do portal.",
-    onde:"<code>.claude/skills/karpathy-guidelines/</code>. De <code>multica-ai/andrej-karpathy-skills</code> (MIT, commit <code>2c60614</code>), instalada em 27/10/2026. Sem adaptação: não pressupõe nada do ambiente." },
+    quando:"<b>Toda troca neste vault</b>, desde 05/11/2026 (regra no <code>CLAUDE.md</code>): código, análise, planilha, nota e regra.",
+    onde:"<code>.claude/skills/karpathy-guidelines/</code>. De <code>multica-ai/andrej-karpathy-skills</code> (MIT, commit <code>2c60614</code>), instalada em 27/10/2026. Adaptação local de 05/11/2026 (descrição ampliada e bloco no fim do <code>SKILL.md</code>): reaplicar se o upstream mudar." },
   { n:"using-superpowers", inv:"automática", tipo:"auto",
     para:"Meta-skill: ensina o Claude a procurar e usar as outras skills antes de responder qualquer coisa.",
     quando:"Início de conversa. É a que garante que as demais sejam lembradas." },
