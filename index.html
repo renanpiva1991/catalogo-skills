@@ -117,7 +117,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--ink3);fo
       <code>.claude/hooks/vigia_skills.py</code> compara as pastas de skills e comandos — do projeto,
       globais e do Claude Desktop — com os nomes catalogados aqui, e cobra o acerto se achar diferença.
       Ele só avisa; quem escreve a entrada é o Claude.
-      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>11/11/2026</b>
+      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>13/11/2026</b>
       <br>Irmão deste catálogo: <code>Conhecimento/catalogo-de-agentes.html</code> — as skills são as ferramentas, os agentes são quem as usa.
     </footer>
   </main>
@@ -287,7 +287,12 @@ const GRUPOS = [
     quando:"Mesmo caso do React — projeto web, não planilha." },
   { n:"secure-code-guardian", inv:"automática", tipo:"auto",
     para:"Autenticação, autorização, validação de entrada, criptografia, prevenção do OWASP Top 10.",
-    quando:"Qualquer coisa que toque em senha, token, credencial ou dado de cliente." }]
+    quando:"Qualquer coisa que toque em senha, token, credencial ou dado de cliente." },
+  { n:"reverse-api-engineer", inv:"automática", tipo:"auto",
+    para:"Transforma um site <b>sem API pública</b> num cliente de programa (Python, PowerShell e mais oito linguagens): um navegador faz a tarefa, a ferramenta <code>reverse-api-engineer</code> grava o tráfego de rede e um modelo escreve o cliente. Instalada em 13/11/2026 com a aprovação da diretoria, para deixar pronta.",
+    quando:"Quando precisar puxar dado de um portal de fornecedor ou de marketplace que só funciona pela tela: <em>&ldquo;dá para puxar a disponibilidade desse portal direto?&rdquo;</em>. Não serve quando já existe API ou conector oficial.",
+    onde:"<code>.claude/skills/reverse-api-engineer/</code> — SKILL.md e as referências <code>setup</code>, <code>sessions</code> e <code>troubleshooting</code>, do repositório <code>kalil0321/reverse-api-engineer</code> (MIT), commit <code>0321574</code>, com a adaptação Vidrama no fim.",
+    alerta:"<b>Só a skill está instalada; a CLI não</b> (sem <code>uv</code> aqui: instala por pip no primeiro uso, com OK). Cada uso pede o seu OK. Padrão é navegador limpo (<code>--headless</code>); o seu Chrome logado só com liberação para aquele site, e nunca banco, Protheus ou sistema interno. A captura leva cookie e token e fica fora do Git. A sessão que a ferramenta abre não lê o CLAUDE.md nem os hooks." }]
 },
 {
   id:"visual", t:"Design e visual",
