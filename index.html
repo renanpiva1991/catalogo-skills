@@ -575,8 +575,8 @@ const GRUPOS = [
   { n:"finance-manager", inv:"automática", tipo:"auto",
     para:"Controle de finanças pessoais a partir dos extratos que o próprio Renan exporta (conta e fatura, em OFX, CSV ou PDF): importa sem duplicar, categoriza em português, separa pagamento de fatura e aplicação para não contar duas vezes, compara com o mesmo mês do ano anterior, mostra parcelas e cobranças recorrentes e gera um relatório HTML local.",
     quando:"&ldquo;baixei o extrato&rdquo;, &ldquo;analisa a fatura do mês&rdquo;, &ldquo;quanto falta de parcelamento?&rdquo;, &ldquo;quais assinaturas eu tenho?&rdquo;.",
-    onde:"Pasta <code>finance-manager</code> nas skills <b>globais</b> (<code>~/.claude/skills</code>), fora do Git de propósito; os dados ficam numa pasta pessoal fora do Brain. Derivada de <code>ailabs-393/ai-labs-claude-skills</code> (MIT), commit <code>1a12bc7</code>, reescrita para o formato brasileiro em 11/11/2026. Catalogada em 11/11/2026 a pedido do Renan.",
-    alerta:"<b>Dado pessoal e sigiloso:</b> o relatório nunca vai para artifact, e-mail, Notion, GitHub ou o Brain. Ainda falta validar com um extrato real. Com a trava de 11/11/2026, ela só roda em conversa aberta no Brain." }]
+    onde:"Pasta <code>finance-manager</code> nas skills <b>globais</b> (<code>~/.claude/skills</code>), fora do Git de propósito; os dados ficam em <code>Projetos/Finanças pessoais/</code>, pasta inteira no <code>.gitignore</code> (11/11/2026); desde 18/11/2026 também lê o extrato bancário por um agregador, só leitura, com credencial que nunca passa pela conversa. Derivada de <code>ailabs-393/ai-labs-claude-skills</code> (MIT), commit <code>1a12bc7</code>, reescrita para o formato brasileiro em 11/11/2026. Catalogada em 11/11/2026 a pedido do Renan.",
+    alerta:"<b>Dado pessoal e sigiloso:</b> o relatório nunca vai para artifact, e-mail, Notion, GitHub ou o Brain. Validada com as faturas e o extrato reais em 13/11/2026 (painel local). Com a trava de 11/11/2026, ela só roda em conversa aberta no Brain." }]
 },
 {
   id:"nativas", t:"Nativas do Claude Code",
