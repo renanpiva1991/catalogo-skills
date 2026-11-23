@@ -117,7 +117,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--ink3);fo
       <code>.claude/hooks/vigia_skills.py</code> compara as pastas de skills e comandos — do projeto,
       globais e do Claude Desktop — com os nomes catalogados aqui, e cobra o acerto se achar diferença.
       Ele só avisa; quem escreve a entrada é o Claude.
-      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>18/11/2026</b>
+      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>23/11/2026</b>
       <br>Irmão deste catálogo: <code>Conhecimento/catalogo-de-agentes.html</code> — as skills são as ferramentas, os agentes são quem as usa.
     </footer>
   </main>
@@ -153,7 +153,7 @@ const GRUPOS = [
     alerta:"O valor declarado é o <b>pago</b>; redução só com prova de estorno. O carimbo da exportadora vai embutido no modelo e só se aplica em documento com o valor pago. NCM é do despachante."
   },
   { n:"instalar-skills", inv:"automática", tipo:"auto",
-    para:"O processo fechado de instalar pacote de skills no brain: clonar e inspecionar antes de copiar, triar o que serve, checar duplicata e colisão de nome, adaptar a skill ao ambiente daqui e <b>atualizar as quatro bases</b> — este catálogo, a memória, o README do projeto e o <code>ONDE PARAMOS</code> — antes do commit.",
+    para:"O processo fechado de instalar pacote de skills no brain: clonar e inspecionar antes de copiar, triar o que serve, checar duplicata e colisão de nome, adaptar a skill ao ambiente daqui e <b>atualizar as quatro bases</b> — este catálogo, a memória, o README do projeto e o <code>ONDE PARAMOS</code> — antes do commit. Desde 23/11/2026 o passo 1 roda a <b>varredura de segurança</b> (<code>Ferramentas/varrer_pacote_skill.py</code>), que aponta injeção de instrução, rede, instalação, credencial, hook e base64 no pacote clonado antes da leitura.",
     quando:"Você mandar instalar skill, pacote, plugin ou comando novo — link do GitHub, pasta, zip, marketplace. Também para atualizar um pacote já instalado, remover uma skill, ou quando o vigia do início de sessão acusar diferença entre o que está instalado e este catálogo.",
     onde:"<code>.claude/skills/instalar-skills/</code> — SKILL.md mais a referência <code>catalogo</code>, que explica a cirurgia neste arquivo. <b>Cópia global</b> em <code>~/.claude/skills/instalar-skills/</code> desde 10/11/2026, com regra em <code>~/.claude/CLAUDE.md</code>: dispara em qualquer pasta e grava sempre no vault. A fonte é a do vault; se ela mudar, recopiar e reaplicar o bloco de adaptação global.",
     alerta:"Duas armadilhas que ela existe para evitar: pacote que manda copiar o <code>CLAUDE.md</code> dele para a raiz (sobrescreveria o da Vidrama) e skill que pressupõe ferramenta inexistente aqui — a adaptação local vai marcada com data, para ser reaplicada quando o upstream atualizar." },
