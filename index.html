@@ -117,7 +117,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--ink3);fo
       <code>.claude/hooks/vigia_skills.py</code> compara as pastas de skills e comandos — do projeto,
       globais e do Claude Desktop — com os nomes catalogados aqui, e cobra o acerto se achar diferença.
       Ele só avisa; quem escreve a entrada é o Claude.
-      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>23/11/2026</b>
+      <br><br><b>Versão pública:</b> esta é a cópia compartilhável do catálogo. Detalhes internos da empresa — nome de fornecedor, número de negócio, endereço de sistema e os parâmetros das fórmulas — foram omitidos de propósito. &middot; Atualizado em <b>25/11/2026</b>
       <br>Irmão deste catálogo: <code>Conhecimento/catalogo-de-agentes.html</code> — as skills são as ferramentas, os agentes são quem as usa.
     </footer>
   </main>
@@ -146,6 +146,11 @@ const GRUPOS = [
     onde:"<code>.claude/skills/vidrama-produtos/</code> — 14 referências temáticas, os scripts de extração da enciclopédia e o do catálogo em PDF.",
     alerta:"Em conflito entre as duas fontes decide o assunto, não a data: <em>como aplicar</em> é da enciclopédia, <em>qual código e qual embalagem</em> é do catálogo. O catálogo não lista vidro nenhum — só acessório, ferramenta e Bosch. E segue valendo a dupla com a <code>vidrama-saldos</code>: uma diz <em>o que é o item</em>, a outra <em>quanto ter dele</em>."
   },
+  { n:"vidrama-rtc", inv:"automática", tipo:"auto",
+    para:"Simula <b>CBS, IBS e Imposto Seletivo</b> da Reforma Tributária (LC 214/2025) com a <b>Calculadora de Tributos oficial da Receita</b> (regime regular, tag 1.7.2) rodando nesta máquina, sem internet. Lote por CSV (SKU, NCM, base, filial) com saída marcada <b>OFICIAL</b>, <b>ESTIMATIVA</b> ou <b>ERRO</b>; consulta de NCM, cClassTrib e alíquotas pela API local.",
+    quando:"<em>&ldquo;quanto vai dar de IBS e CBS nesse parabrisa?&rdquo;</em>, <em>&ldquo;simula a reforma nos vidros de SP&rdquo;</em>, impacto da reforma no preço ou na margem, cClassTrib, ano de teste 2026, transição 2027-2033, &ldquo;calculadora da Receita&rdquo;.",
+    onde:"<code>.claude/skills/vidrama-rtc/</code> — <code>scripts/rtc.ps1</code> (iniciar, parar, status, instalar) e <code>scripts/simular.py</code>. Calculadora em <code>Projetos/Reforma Tributaria/calculadora-rtc/</code> (fora do Git) e Java 25 portátil em <code>%LOCALAPPDATA%&#92;Programs&#92;jdk-25</code>.",
+    alerta:"<b>Só 2026 tem alíquota oficial</b> (CBS 0,9%, IBS 0,1%). De 2027 em diante a alíquota é premissa informada e o resultado sai <b>ESTIMATIVA</b>. Débito não é custo: impacto em margem exige simular compra e venda. Não decide nada fiscal. Atualizar a calculadora = varrer o diff, <code>rtc.ps1 instalar -Versao</code> e rodar o teste de prova do README." },
   { n:"vidrama-invoice-china", inv:"automática", tipo:"auto",
     para:"Adapta a <b>invoice e o packing list</b> que a exportadora chinesa manda no padrão chinês (uma linha só, sem importador, pesos, países nem Incoterm) para o <b>padrão brasileiro</b>: bilíngue, com os campos do art. 557 do Regulamento Aduaneiro, valor efetivamente pago, fabricante, pesos, medidas e cubagem, alinhados ao AWB ou BL.",
     quando:"Chegou invoice, PL, pedido Alibaba, AWB ou BL da exportadora; <em>&ldquo;acerta a invoice com o BL&rdquo;</em>, <em>&ldquo;layout de invoice&rdquo;</em>, importação SPOT. Serve de ponto de partida para outro exportador chinês no mesmo formato.",
